@@ -121,7 +121,7 @@ if [[ "$supported_platform" == true ]]; then
         fi
 
         if [[ "$board_type" == "rpi_4_" ]]; then
-            dtoverlayL1="dtoverlay=vc4-$cam_link-v3d${append}"
+            dtoverlayL1="dtoverlay=vc4-"$cam_link"-v3d${append}"
         elif [[ "$board_type" == "rpi_3_" ]]; then
             dtoverlayL1="dtoverlay=vc4-fkms-v3d${append}"
         fi
@@ -136,27 +136,26 @@ if [[ "$supported_platform" == true ]]; then
     elif [[ "$board_type" == "rk3566" ]]; then
         echo "This Platform is Rockchip based and a RK3566 SOC"
         if apt list --installed | grep -q "u-boot-radxa-zero3"; then
-            # Search for lines containing "append" in the extlinux.conf file
-            lines=$(grep -n "append" /boot/extlinux/extlinux.conf | cut -d':' -f1)
+        # Search for lines containing "append" in the extlinux.conf file
+        lines=$(grep -n "append" /boot/extlinux/extlinux.conf | cut -d':' -f1)
 
-            # Loop through each line number and check for the presence of "video"
-            for line in $lines; do
-                if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line; then
-                    echo "Line $line: append is here!"
-                    break
-                else
-                    echo "failed to read correct file."
-                fi
-            done
+        # Loop through each line number and check for the presence of "video"
+        for line in $lines
+        do
+            if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line
+            then
+                echo "Line $line: append is here!"
+                break
+            else
+                echo "failed to read correct file.
+            fi
+        done
 
         else
             echo "false"
         fi
-    fi
-fi
 
-
-
+        
     elif [[ "$board_type" == "rk3588" ]]; then
         echo "This Platform is Rockchip based and a RK3588 SOC"
     else
