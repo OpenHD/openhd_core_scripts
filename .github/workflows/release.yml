@@ -43,7 +43,7 @@ jobs:
           release: "any-version"
           republish: "true" # needed ONLY if version is not changing
           file: "*armhf.deb"
-      - name: Push
+      - name: Push2
         id: push
         uses: cloudsmith-io/action@master
         with:
