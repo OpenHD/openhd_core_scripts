@@ -44,12 +44,11 @@ case $config_file_content in
 esac
 
 
-# Prepare everything
+# Preparing everything
 echo "Camera Type: $cam_type"
 echo "Current Config:" 
 cp /boot/config.txt /boot/config.txt.bak
 grep '^dtoverlay' /boot/config.txt
-removing old configs
 sed -i '/#OPENHD_DYNAMIC_CONTENT_BEGIN#/q' /boot/config.txt
 
 
