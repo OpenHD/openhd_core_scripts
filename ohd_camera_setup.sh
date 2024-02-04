@@ -145,10 +145,9 @@ if [[ "$supported_platform" == true ]]; then
             if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line
             then
                 echo "Line $line: append is here!"
+                break
             else
-                # Add "video" to the end of the line
-                #sed -i "${line}s/$/ video=1920x1080@60/" /boot/extlinux/extlinux.conf
-                echo "Line $line: appended"
+                echo "failed to read correct file.
             fi
         done
 
