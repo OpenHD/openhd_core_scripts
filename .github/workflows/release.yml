@@ -16,6 +16,7 @@ jobs:
         run: |
           ls -a
           mkdir -p openhd_sys_utils/usr/local/bin
+          chmod +x *.sh
           mv *.sh openhd_sys_utils/usr/local/bin
           mkdir -p openhd_sys_utils/etc/system/systemd/
           mv *.service openhd_sys_utils/etc/system/systemd/
