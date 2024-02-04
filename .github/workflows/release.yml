@@ -18,9 +18,9 @@ jobs:
           mkdir -p usr/local/bin
           mv *.sh usr/local/bin
           mkdir -p etc/system/systemd/
-          mv .service etc/system/systemd/
+          mv *.service etc/system/systemd/
           sudo gem install fpm
-          fpm -a armhf -s dir -t deb -n openhd_sys_utils -v 0.2 -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
+          fpm -a armhf -s dir -t deb -n openhd_sys_utils -v 0.1 -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
