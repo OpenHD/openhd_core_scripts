@@ -63,8 +63,7 @@ fi
 
 ##Line2
 dtoverlayL2=
-fi
-echo "
+echo $dtoverlayL1
 
 # Remove unnecessary lines from OpenHD config file
 #sed -i '/#OPENHD_DYNAMIC_CONTENT_BEGIN#/,$d' /boot/openhd/rpi.txt
