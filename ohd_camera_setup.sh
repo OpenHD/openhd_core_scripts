@@ -139,15 +139,15 @@ if [[ "$supported_platform" == true ]]; then
             # Search for lines containing "append" in the extlinux.conf file
             lines=$(grep -n "append" /boot/extlinux/extlinux.conf | cut -d':' -f1)
 
-            # Loop through each line number and check for the presence of "video"
-            # for line in $lines; do
-            #     if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line; then
-            #         echo "Line $line: append is here!"
-            #         break
-            #     else
-            #         echo "failed to read correct file."
-            #     fi
-            # done
+            Loop through each line number and check for the presence of "video"
+            for line in $lines; do
+                if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line; then
+                    echo "Line $line: append is here!"
+                    break
+                else
+                    echo "failed to read correct file."
+                fi
+            done
 
             else
                 echo "false"
