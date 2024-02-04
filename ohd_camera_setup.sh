@@ -153,11 +153,6 @@ if [[ "$supported_platform" == true ]]; then
                 echo "false"
             fi
         fi
-    fi
-
-
-
-
     elif [[ "$board_type" == "rk3588" ]]; then
         echo "This Platform is Rockchip based and a RK3588 SOC"
     else
