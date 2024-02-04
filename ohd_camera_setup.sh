@@ -154,7 +154,7 @@ if [[ "$supported_platform" == true ]]; then
             fi
         fi
     fi
-fi
+
 
 
 
