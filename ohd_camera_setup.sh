@@ -43,6 +43,21 @@ case $config_file_content in
     *) cam_type="Unknown"; cam_link="unknown_link"; cma=false ;;
 esac
 
+# Copy better tuning file for 477m
+if [[ "$cam_type" == X_CAM_TYPE_RPI_LIBCAMERA_ARDUCAM_IMX477M ]]; then
+    if [ -e /usr/share/libcamera/ipa/raspberrypi/imx477_old.json ]; then
+    echo "nothing to do"
+    else
+    mv /usr/share/libcamera/ipa/raspberrypi/imx477.json", "/usr/share/libcamera/ipa/raspberrypi/imx477_old.json
+    cp /usr/share/libcamera/ipa/raspberrypi/arducam-477m.json", "/usr/share/libcamera/ipa/raspberrypi/imx477.json
+elif [[ "$cam_type" == X_CAM_TYPE_RPI_LIBCAMERA_RPIF_HQ_IMX477 ]]; then
+    if [ -e /usr/share/libcamera/ipa/raspberrypi/imx477_old.json ]; then
+    rm /usr/share/libcamera/ipa/raspberrypi/imx477.json
+    mv /usr/share/libcamera/ipa/raspberrypi/imx477_old.json /usr/share/libcamera/ipa/raspberrypi/imx477.json
+    rm /usr/share/libcamera/ipa/raspberrypi/imx477_old.json
+    else
+    echo "nothing to do"
+fi
 
 # Preparing everything
 echo "Camera Type: $cam_type"
