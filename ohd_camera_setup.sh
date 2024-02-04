@@ -138,11 +138,18 @@ if [[ "$supported_platform" == true ]]; then
             rk_config_platform="radxa-zero3-"
             rk_config_line="${rk_config_spacer}${rk_config_platform}${cam_ident}.dtbo"
             echo "executing settings procedure"
+            echo "remove all overlays"
+            # Search for lines containing "fdtoverlays" in the extlinux.conf file
+            lines_old=$(grep -n "fdtoverlays" /boot/extlinux/extlinux.conf | cut -d':' -f1)
+            for line in $lines_old; do
+                if grep -n "fdtoverlays" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line; then
+                    awk 'NR != '$line' { print }' /boot/extlinux/extlinux.conf > /boot/extlinux/extlinux.conf.tmp && mv /boot/extlinux/extlinux.conf.tmp /boot/extlinux/extlinux.conf
+                fi
+            done
             # Search for lines containing "append" in the extlinux.conf file
             lines=$(grep -n "append" /boot/extlinux/extlinux.conf | cut -d':' -f1)
             for line in $lines; do
                 if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line; then
-                    echo "Line $line: append is here!"
                     awk -v line="$((line))" -v rk_config_line="$rk_config_line" 'NR == line {print rk_config_line} {print}' /boot/extlinux/extlinux.conf > tmpfile && mv tmpfile /boot/extlinux/extlinux.conf
                     break
                 else
