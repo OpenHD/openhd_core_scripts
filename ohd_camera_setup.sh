@@ -148,14 +148,14 @@ if [[ "$supported_platform" == true ]]; then
             done
             # Search for lines containing "append" in the extlinux.conf file
             lines=$(grep -n "append" /boot/extlinux/extlinux.conf | cut -d':' -f1)
-            for line in $lines; do
-                if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line; then
-                    awk -v line="$((line))" -v rk_config_line="$rk_config_line" 'NR == line {print rk_config_line} {print}' /boot/extlinux/extlinux.conf > tmpfile && mv tmpfile /boot/extlinux/extlinux.conf
-                    break
-                else
-                    echo "failed to read correct file."
-                fi
-            done
+            # for line in $lines; do
+            #     if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line; then
+            #         awk -v line="$((line))" -v rk_config_line="$rk_config_line" 'NR == line {print rk_config_line} {print}' /boot/extlinux/extlinux.conf > tmpfile && mv tmpfile /boot/extlinux/extlinux.conf
+            #         break
+            #     else
+            #         echo "failed to read correct file."
+            #     fi
+            # done
 
             else
                 echo "false"
