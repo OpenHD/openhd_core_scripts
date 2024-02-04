@@ -158,4 +158,3 @@ if [[ "$supported_platform" == true ]]; then
     else
         echo "This platform is not supported"
     fi
-fi
