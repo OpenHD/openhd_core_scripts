@@ -138,7 +138,7 @@ if [[ "$supported_platform" == true ]]; then
         if apt list --installed | grep -q "u-boot-radxa-zero3"; then
             rk_config_spacer="        "
             rk_config_platform="radxa-zero3-"
-            rk_config_line=$rk_config_spacer$radxa-zero3-$cam_ident
+            rk_config_line="${rk_config_spacer}${radxa-zero3-}${cam_ident}"
             echo "executing settings procedure"
             echo $rk_config_line
             exit 1
