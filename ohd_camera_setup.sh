@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # Define all Camera types
+# Read camera configuration from file
+config_file="/boot/openhd/camera1.txt"
+config_file_content=$(<$config_file)
 
 case $config_file_content in
             # Raspberry
@@ -82,11 +85,6 @@ if [[ "$supported_platform" == true ]]; then
     echo $board_type
     if [[ "$platform" == "rpi" ]]; then
         echo "This Platform is a Raspberry Pi"
-
-        # Read camera configuration from file
-        config_file="/boot/openhd/camera1.txt"
-        config_file_content=$(<$config_file)
-
         # Copy better tuning file for 477m
         if [[ "$cam_type" == X_CAM_TYPE_RPI_LIBCAMERA_ARDUCAM_IMX477M ]]; then
             if [ -e /usr/share/libcamera/ipa/raspberrypi/imx477_old.json ]; then
