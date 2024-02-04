@@ -56,9 +56,9 @@ else
 fi
 
 if [[ "$board_type" == "rpi_4_" ]]; then
-dtoverlayL1="vc4-"+$cam_link+"-v3d${append}"
+dtoverlayL1="vc4-"$cam_link"-v3d${append}"
 echo"test"
-elif [[ "$board_type" == "rpi_3_+" ]]; then
+elif [[ "$board_type" == "rpi_3_" ]]; then
 dtoverlayL1="vc4-fkms-v3d${append}"
 fi
 
