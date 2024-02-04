@@ -15,7 +15,7 @@ elif [[ "$kernel_type" == "v7+" ]]; then
     board_type="rpi_3_"
     platform=rpi
     supported_platform=true
-elif echo "$kernel_version" | grep -q "rk3566"; then
+elif echo "$kernel_version" | grep -q "rk356x"; then
     board_type="rk3566"
     platform=rockchip
     supported_platform=true
