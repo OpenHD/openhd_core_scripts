@@ -154,6 +154,7 @@ if [[ "$supported_platform" == true ]]; then
                     echo "failed to read correct file."
                 fi
             done
+            sudo u-boot-update
             # Copy the overlay to the correct position
             rk_config_overlay_path="/boot/dtbo/"
             rk_config_overlay_file=$rk_config_overlay_path$rk_config_platform$cam_ident".dtbo"
