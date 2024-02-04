@@ -46,17 +46,19 @@ esac
 # Copy better tuning file for 477m
 if [[ "$cam_type" == X_CAM_TYPE_RPI_LIBCAMERA_ARDUCAM_IMX477M ]]; then
     if [ -e /usr/share/libcamera/ipa/raspberrypi/imx477_old.json ]; then
-    echo "nothing to do"
+        echo "No Custom Tuning needed!"
     else
-    mv /usr/share/libcamera/ipa/raspberrypi/imx477.json", "/usr/share/libcamera/ipa/raspberrypi/imx477_old.json
-    cp /usr/share/libcamera/ipa/raspberrypi/arducam-477m.json", "/usr/share/libcamera/ipa/raspberrypi/imx477.json
+        mv /usr/share/libcamera/ipa/raspberrypi/imx477.json /usr/share/libcamera/ipa/raspberrypi/imx477_old.json
+        cp /usr/share/libcamera/ipa/raspberrypi/arducam-477m.json /usr/share/libcamera/ipa/raspberrypi/imx477.json
+    fi
 elif [[ "$cam_type" == X_CAM_TYPE_RPI_LIBCAMERA_RPIF_HQ_IMX477 ]]; then
     if [ -e /usr/share/libcamera/ipa/raspberrypi/imx477_old.json ]; then
-    rm /usr/share/libcamera/ipa/raspberrypi/imx477.json
-    mv /usr/share/libcamera/ipa/raspberrypi/imx477_old.json /usr/share/libcamera/ipa/raspberrypi/imx477.json
-    rm /usr/share/libcamera/ipa/raspberrypi/imx477_old.json
+        rm /usr/share/libcamera/ipa/raspberrypi/imx477.json
+        mv /usr/share/libcamera/ipa/raspberrypi/imx477_old.json /usr/share/libcamera/ipa/raspberrypi/imx477.json
+        rm /usr/share/libcamera/ipa/raspberrypi/imx477_old.json
     else
-    echo "nothing to do"
+        echo "No Custom Tuning needed!"
+    fi
 fi
 
 # Preparing everything
@@ -66,21 +68,18 @@ cp /boot/config.txt /boot/config.txt.bak
 grep '^dtoverlay' /boot/config.txt
 sed -i '/#OPENHD_DYNAMIC_CONTENT_BEGIN#/q' /boot/config.txt
 
-
-
-
 # Create Overlay
 ##Line1
 if [[ "$cma" == true ]]; then
-  append=",cma=400M"
+    append=",cma=400M"
 else
-  append=""
+    append=""
 fi
 
 if [[ "$board_type" == "rpi_4_" ]]; then
-dtoverlayL1="dtoverlay=vc4-"$cam_link"-v3d${append}"
+    dtoverlayL1="dtoverlay=vc4-"$cam_link"-v3d${append}"
 elif [[ "$board_type" == "rpi_3_" ]]; then
-dtoverlayL1="dtoverlay=vc4-fkms-v3d${append}"
+    dtoverlayL1="dtoverlay=vc4-fkms-v3d${append}"
 fi
 
 echo $dtoverlayL1
