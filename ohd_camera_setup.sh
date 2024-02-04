@@ -137,8 +137,6 @@ if [[ "$supported_platform" == true ]]; then
             rk_config_spacer="        fdtoverlays  "
             rk_config_platform="radxa-zero3-"
             rk_config_line="${rk_config_spacer}${rk_config_platform}${cam_ident}.dtbo"
-            echo "executing settings procedure"
-            echo "remove all overlays"
             # Search for lines containing "fdtoverlays" in the extlinux.conf file
             lines_old=$(grep -n "fdtoverlays" /boot/extlinux/extlinux.conf | cut -d':' -f1)
             for line in $lines_old; do
@@ -158,7 +156,7 @@ if [[ "$supported_platform" == true ]]; then
             done
 
             else
-                echo "false"
+                echo "this is an unknown platform"
             fi
         fi
     elif [[ "$board_type" == "rk3588" ]]; then
