@@ -155,7 +155,6 @@ if [[ "$supported_platform" == true ]]; then
                 fi
             done
             # Copy the overlay to the correct position
-
             rk_config_overlay_path="/boot/dtbo/"
             rk_config_overlay_file=$rk_config_overlay_path$rk_config_platform$cam_ident".dtbo"
             rk_config_overlay_disabled=$rk_config_overlay_file".disabled"
