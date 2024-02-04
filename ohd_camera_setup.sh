@@ -135,12 +135,12 @@ if [[ "$supported_platform" == true ]]; then
 
     elif [[ "$board_type" == "rk3566" ]]; then
         echo "This Platform is Rockchip based and a RK3566 SOC"
-        rk_config_line="hello sausage"
         if apt list --installed | grep -q "u-boot-radxa-zero3"; then
+            rk_config_spacer="         "
+            rk_config_line=$rk_config_spacer"hello sausage"
+            echo "executing settings procedure"
             # Search for lines containing "append" in the extlinux.conf file
             lines=$(grep -n "append" /boot/extlinux/extlinux.conf | cut -d':' -f1)
-
-            #Loop through each line number and check for the presence of "video"
             for line in $lines; do
                 if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line; then
                     echo "Line $line: append is here!"
