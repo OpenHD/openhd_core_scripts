@@ -136,11 +136,8 @@ if [[ "$supported_platform" == true ]]; then
         if apt list --installed | grep -q "u-boot-radxa-zero3"; then
             rk_config_spacer="        "
             rk_config_platform="radxa-zero3-"
-            echo $cam_ident
-            rk_config_line="${rk_config_spacer}${rk_config_platform}${cam_ident}"
+            rk_config_line="${rk_config_spacer}${rk_config_platform}${cam_ident}.dtbo"
             echo "executing settings procedure"
-            echo $rk_config_line
-            exit 1
             # Search for lines containing "append" in the extlinux.conf file
             lines=$(grep -n "append" /boot/extlinux/extlinux.conf | cut -d':' -f1)
             for line in $lines; do
