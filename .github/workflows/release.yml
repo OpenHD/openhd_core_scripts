@@ -23,7 +23,7 @@ jobs:
           sudo gem install fpm
           fpm -a armhf -s dir -t deb -n openhd_sys_utils -v 0.1 -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
           fpm -a arm64 -s dir -t deb -n openhd_sys_utils -v 0.1 -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
-
+          ls -a
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -42,4 +42,17 @@ jobs:
           distro: "any-distro"
           release: "any-version"
           republish: "true" # needed ONLY if version is not changing
-          file: "*.deb"
+          file: "*armhf.deb"
+      - name: Push
+        id: push
+        uses: cloudsmith-io/action@master
+        with:
+          api-key: ${{ secrets.CLOUDSMITH_API_KEY }}
+          command: "push"
+          format: "deb"
+          owner: "openhd"
+          repo: "release"
+          distro: "any-distro"
+          release: "any-version"
+          republish: "true" # needed ONLY if version is not changing
+          file: "*arm64.deb"
