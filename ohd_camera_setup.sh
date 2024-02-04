@@ -143,7 +143,7 @@ if [[ "$supported_platform" == true ]]; then
             for line in $lines; do
                 if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line; then
                     echo "Line $line: append is here!"
-                    awk -i inplace -v line="$((line-1))" 'NR == line {print "hello world"} {print}' /boot/extlinux/extlinux.conf
+                    awk -v line="$((line-1))" 'NR == line {print "hello world"} {print}' /boot/extlinux/extlinux.conf > tmpfile && mv tmpfile /boot/extlinux/extlinux.conf
                     break
                 else
                     echo "failed to read correct file."
