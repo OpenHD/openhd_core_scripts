@@ -41,6 +41,8 @@ case $config_file_content in
             90) cam_type="X_CAM_TYPE_X20_RUNCAM_NANO";;
             91) cam_type="X_CAM_TYPE_X20_RUNCAM_90";;
             92) cam_type="X_CAM_TYPE_X20_OHD_Jaguar";;
+            # Enterprise
+            101) cam_type="X_CAM_TYPE_AGX_IMX577";;
             *) cam_type="Unknown"; cam_link="unknown_link"; cma=false ;;
         esac
 
