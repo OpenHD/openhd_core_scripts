@@ -26,17 +26,18 @@ case $config_file_content in
             52) cam_type="X_CAM_TYPE_RPI_V4L2_VEYE_CSSC132"; cam_link="kms"; cam_ident="cssc132-overlay"; cma=false ;;
             53) cam_type="X_CAM_TYPE_RPI_V4L2_VEYE_MVCAM"; cam_link="kms"; cam_ident="veye_mvcam-overlay"; cma=false ;;
             # Rockchip
-            70) cam_type="X_CAM_TYPE_ROCK_5_HDMI_IN";;
-            71) cam_type="X_CAM_TYPE_ROCK_5_OV5647";;
-            72) cam_type="X_CAM_TYPE_ROCK_5_IMX219";;
-            73) cam_type="X_CAM_TYPE_ROCK_5_IMX708";;
-            74) cam_type="X_CAM_TYPE_ROCK_5_IMX462";;
-            75) cam_type="X_CAM_TYPE_ROCK_5_OHD_Jaguar";;
-            70) cam_type="X_CAM_TYPE_ROCK_3_HDMI_IN";;
-            81) cam_type="X_CAM_TYPE_ROCK_3_OV5647";;
-            82) cam_type="X_CAM_TYPE_ROCK_3_IMX219";;
-            83) cam_type="X_CAM_TYPE_ROCK_3_IMX708";;
-            84) cam_type="X_CAM_TYPE_ROCK_3_OHD_Jaguar";;
+            70) cam_type="X_CAM_TYPE_ROCK_5_HDMI_IN"; cam_ident="" ;;
+            71) cam_type="X_CAM_TYPE_ROCK_5_OV5647"; cam_ident="rpi-camera-v1_3" ;;
+            72) cam_type="X_CAM_TYPE_ROCK_5_IMX219"; cam_ident="rpi-camera-v2" ;;
+            73) cam_type="X_CAM_TYPE_ROCK_5_IMX708"; cam_ident="imx708" ;;
+            74) cam_type="X_CAM_TYPE_ROCK_5_IMX462"; cam_ident="arducam-pivariety" ;;
+            75) cam_type="X_CAM_TYPE_ROCK_5_IMX415"; cam_ident="radxa-camera-4k" ;;
+            76) cam_type="X_CAM_TYPE_ROCK_5_OHD_Jaguar"; cam_ident="ohd-jaguar" ;;
+            80) cam_type="X_CAM_TYPE_ROCK_3_HDMI_IN"; cam_ident="" ;;
+            81) cam_type="X_CAM_TYPE_ROCK_3_OV5647"; cam_ident="rpi-camera-v1.3" ;;
+            82) cam_type="X_CAM_TYPE_ROCK_3_IMX219"; cam_ident="rpi-camera-v2" ;;
+            83) cam_type="X_CAM_TYPE_ROCK_3_IMX708"; cam_ident="imx708" ;;
+            84) cam_type="X_CAM_TYPE_ROCK_3_OHD_Jaguar"; cam_ident="ohd-jaguar" ;;
             # OpenHD
             90) cam_type="X_CAM_TYPE_X20_RUNCAM_NANO";;
             91) cam_type="X_CAM_TYPE_X20_RUNCAM_90";;
