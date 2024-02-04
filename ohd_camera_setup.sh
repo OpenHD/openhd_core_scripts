@@ -26,6 +26,21 @@ case $config_file_content in
             52) cam_type="X_CAM_TYPE_RPI_V4L2_VEYE_CSSC132"; cam_link="kms"; cam_ident="cssc132-overlay"; cma=false ;;
             53) cam_type="X_CAM_TYPE_RPI_V4L2_VEYE_MVCAM"; cam_link="kms"; cam_ident="veye_mvcam-overlay"; cma=false ;;
             # Rockchip
+            70) cam_type="X_CAM_TYPE_ROCK_5_HDMI_IN";;
+            71) cam_type="X_CAM_TYPE_ROCK_5_OV5647";;
+            72) cam_type="X_CAM_TYPE_ROCK_5_IMX219";;
+            73) cam_type="X_CAM_TYPE_ROCK_5_IMX708";;
+            74) cam_type="X_CAM_TYPE_ROCK_5_IMX462";;
+            75) cam_type="X_CAM_TYPE_ROCK_5_OHD_Jaguar";;
+            70) cam_type="X_CAM_TYPE_ROCK_3_HDMI_IN";;
+            81) cam_type="X_CAM_TYPE_ROCK_3_OV5647";;
+            82) cam_type="X_CAM_TYPE_ROCK_3_IMX219";;
+            83) cam_type="X_CAM_TYPE_ROCK_3_IMX708";;
+            84) cam_type="X_CAM_TYPE_ROCK_3_OHD_Jaguar";;
+            # OpenHD
+            90) cam_type="X_CAM_TYPE_X20_RUNCAM_NANO";;
+            91) cam_type="X_CAM_TYPE_X20_RUNCAM_90";;
+            92) cam_type="X_CAM_TYPE_X20_OHD_Jaguar";;
             *) cam_type="Unknown"; cam_link="unknown_link"; cma=false ;;
         esac
 
@@ -43,11 +58,11 @@ elif [[ "$kernel_type" == "v7+" ]]; then
     board_type="rpi_3_"
     platform=rpi
     supported_platform=true
-elif echo "$kernel_version" | grep -q "rk356x"; then
+elif echo "$kernel_version" | grep -q "rk356"; then
     board_type="rk3566"
     platform=rockchip
     supported_platform=true
-elif echo "$kernel_version" | grep -q "rk3588"; then
+elif echo "$kernel_version" | grep -q "rk358"; then
     board_type="rk3588"
     platform=rockchip
     supported_platform=true
