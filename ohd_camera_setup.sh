@@ -136,8 +136,22 @@ if [[ "$supported_platform" == true ]]; then
     elif [[ "$board_type" == "rk3566" ]]; then
         echo "This Platform is Rockchip based and a RK3566 SOC"
         if apt list --installed | grep -q "u-boot-radxa-zero3"; then
-        line=$(grep -n "fdtdir /usr/lib/linux-image-5.10.160-radxa-rk356x/" /boot/extlinux/extlinux.conf | cut -d: -f1)
-        echo $line
+        # Search for lines containing "append" in the extlinux.conf file
+        lines=$(grep -n "append" /boot/extlinux/extlinux.conf | cut -d':' -f1)
+
+        # Loop through each line number and check for the presence of "video"
+        for line in $lines
+        do
+            if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line
+            then
+                echo "Line $line: append is here!"
+            else
+                # Add "video" to the end of the line
+                #sed -i "${line}s/$/ video=1920x1080@60/" /boot/extlinux/extlinux.conf
+                echo "Line $line: appended"
+            fi
+        done
+
         else
             echo "false"
         fi
