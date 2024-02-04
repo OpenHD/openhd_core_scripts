@@ -135,6 +135,7 @@ if [[ "$supported_platform" == true ]]; then
 
     elif [[ "$board_type" == "rk3566" ]]; then
         echo "This Platform is Rockchip based and a RK3566 SOC"
+        rk_config_line="hwllo dude"
         if apt list --installed | grep -q "u-boot-radxa-zero3"; then
             # Search for lines containing "append" in the extlinux.conf file
             lines=$(grep -n "append" /boot/extlinux/extlinux.conf | cut -d':' -f1)
@@ -143,7 +144,7 @@ if [[ "$supported_platform" == true ]]; then
             for line in $lines; do
                 if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line; then
                     echo "Line $line: append is here!"
-                    awk -v line="$((line))" 'NR == line {print "hello world"} {print}' /boot/extlinux/extlinux.conf > tmpfile && mv tmpfile /boot/extlinux/extlinux.conf
+                    awk -v line="$((line))" 'NR == line {print $rk_config_line} {print}' /boot/extlinux/extlinux.conf > tmpfile && mv tmpfile /boot/extlinux/extlinux.conf
                     break
                 else
                     echo "failed to read correct file."
