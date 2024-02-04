@@ -15,11 +15,19 @@ elif [[ "$kernel_type" == "v7+" ]]; then
     board_type="rpi_3_"
     platform=rpi
     supported_platform=true
-else 
-    supported_platform=false
+elif echo "$kernel_version" | grep -q "rk3566"; then
+    board_type="rk3566"
+    platform=rockchip
+    supported_platform=true
+elif echo "$kernel_version" | grep -q "rk3588"; then
+    board_type="rk3588"
+    platform=rockchip
+    supported_platform=true
 fi
 
 if [[ "$supported_platform" == true ]]; then
+    echo $platform
+    echo $board_type
     if [[ "$platform" == "rpi" ]]; then
         echo "This Platform is a Raspberry Pi"
 
@@ -99,9 +107,10 @@ if [[ "$supported_platform" == true ]]; then
 
         echo $dtoverlayL2
 
-    elif [[ "$kernel_type" == "v7+" ]]; then
-        # Additional code for v7+ platform can be added here
-        echo "This Platform is Rockchip based"
+    elif [[ "$board_type" == "rk3566" ]]; then
+        echo "This Platform is Rockchip based and a RK3566 SOC"
+    elif [[ "$board_type" == "rk3588" ]]; then
+        echo "This Platform is Rockchip based and a RK3588 SOC"
     else
         echo "This platform is not supported"
     fi
