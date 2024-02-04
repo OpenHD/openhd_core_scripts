@@ -44,7 +44,7 @@ jobs:
           republish: "true" # needed ONLY if version is not changing
           file: "*armhf.deb"
       - name: Push2
-        id: push
+        id: push2
         uses: cloudsmith-io/action@master
         with:
           api-key: ${{ secrets.CLOUDSMITH_API_KEY }}
