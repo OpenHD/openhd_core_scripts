@@ -27,7 +27,7 @@ fi
     output="$filename"
 
 #Echo camera
-echo $configFileContent
+echo $filename
 
 
 #Rockchip
