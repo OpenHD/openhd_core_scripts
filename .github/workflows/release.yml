@@ -22,6 +22,8 @@ jobs:
           mv *.service openhd_sys_utils/etc/system/systemd/
           sudo gem install fpm
           fpm -a armhf -s dir -t deb -n openhd_sys_utils -v 0.1 -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
+          fpm -a arm64 -s dir -t deb -n openhd_sys_utils -v 0.1 -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -37,7 +39,7 @@ jobs:
           format: "deb"
           owner: "openhd"
           repo: "release"
-          distro: "debian"
-          release: "bullseye"
+          distro: "any-distro"
+          release: "any-version"
           republish: "true" # needed ONLY if version is not changing
           file: "*.deb"
