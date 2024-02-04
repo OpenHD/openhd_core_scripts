@@ -137,6 +137,7 @@ if [[ "$supported_platform" == true ]]; then
         echo "This Platform is Rockchip based and a RK3566 SOC"
         if apt list --installed | grep -q "u-boot-radxa-zero3"; then
         line=$(grep -n "fdtdir /usr/lib/linux-image-5.10.160-radxa-rk356x/" /boot/extlinux/extlinux.conf | cut -d: -f1)
+        echo "test"
         if [[ -n $line ]]; then
             # Check if the line after the matched line starts with "append"
             next_line=$(awk "NR==$line+1" /boot/extlinux/extlinux.conf)
