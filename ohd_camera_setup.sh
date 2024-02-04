@@ -44,10 +44,15 @@ case $config_file_content in
 esac
 
 
-# Echo camera type
+# Prepare everything
 echo "Camera Type: $cam_type"
 echo "Current Config:" 
+cp /boot/config.txt /boot/config.txt.bak
 grep '^dtoverlay' /boot/config.txt
+removing old configs
+sed -i '/#OPENHD_DYNAMIC_CONTENT_BEGIN#/q' /boot/config.txt
+
+
 
 
 # Create Overlay
@@ -59,14 +64,17 @@ else
 fi
 
 if [[ "$board_type" == "rpi_4_" ]]; then
-dtoverlayL1="vc4-"$cam_link"-v3d${append}"
+dtoverlayL1="dtoverlay=vc4-"$cam_link"-v3d${append}"
 elif [[ "$board_type" == "rpi_3_" ]]; then
-dtoverlayL1="vc4-fkms-v3d${append}"
+dtoverlayL1="dtoverlay=vc4-fkms-v3d${append}"
 fi
 
-##Line2
-dtoverlayL2=
 echo $dtoverlayL1
+
+##Line2
+dtoverlayL2="dtoverlay=$cam_ident"
+
+echo $dtoverlayL2
 
 # Remove unnecessary lines from OpenHD config file
 #sed -i '/#OPENHD_DYNAMIC_CONTENT_BEGIN#/,$d' /boot/openhd/rpi.txt
