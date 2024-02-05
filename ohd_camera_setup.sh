@@ -148,6 +148,8 @@ if [[ "$supported_platform" == true ]]; then
             lines=$(grep -n "append" /boot/extlinux/extlinux.conf | cut -d':' -f1)
             for line in $lines; do
                 if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line; then
+                    echo $line
+                    echo $rk_config_line
                     awk -v line="$((line))" -v rk_config_line="$rk_config_line" 'NR == line {print rk_config_line} {print}' /boot/extlinux/extlinux.conf > tmpfile && mv tmpfile /boot/extlinux/extlinux.conf
                     break
                 else
