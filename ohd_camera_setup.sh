@@ -1,9 +1,14 @@
 #!/bin/bash
 
 # Define all Camera types
-# Read camera configuration from file
-config_file="/boot/openhd/camera1.txt"
-config_file_content=$(<$config_file)
+# Read camera configuration from file or argument
+if [ $# -eq 0 ]; then
+    config_file="/boot/openhd/camera1.txt"
+    config_file_content=$(<$config_file)
+else
+    config_file_content=$1
+fi
+
 
 case $config_file_content in
             # Raspberry
