@@ -86,10 +86,10 @@ else
 fi
 
 if [[ "$supported_platform" == true ]]; then
-    echo $platform
-    echo $board_type
+    # echo $platform
+    # echo $board_type
     if [[ "$platform" == "rpi" ]]; then
-        echo "This Platform is a Raspberry Pi"
+        #echo "This Platform is a Raspberry Pi"
         # Copy better tuning file for 477m
         if [[ "$cam_type" == X_CAM_TYPE_RPI_LIBCAMERA_ARDUCAM_IMX477M ]]; then
             if [ -e /usr/share/libcamera/ipa/raspberrypi/imx477_old.json ]; then
@@ -109,8 +109,8 @@ if [[ "$supported_platform" == true ]]; then
         fi
 
         # Preparing everything
-        echo "Camera Type: $cam_type"
-        echo "Current Config:" 
+        # echo "Camera Type: $cam_type"
+        # echo "Current Config:" 
         cp /boot/config.txt /boot/config.txt.bak
         grep '^dtoverlay' /boot/config.txt
         sed -i '/#OPENHD_DYNAMIC_CONTENT_BEGIN#/q' /boot/config.txt
@@ -129,12 +129,12 @@ if [[ "$supported_platform" == true ]]; then
             dtoverlayL1="dtoverlay=vc4-fkms-v3d${append}"
         fi
 
-        echo $dtoverlayL1
+        echo $dtoverlayL1 > /boot/config.txt
 
         ## Line 2
         dtoverlayL2="dtoverlay=$cam_ident"
 
-        echo $dtoverlayL2
+        echo $dtoverlayL2 > /boot/config.txt
 
     elif [[ "$board_type" == "rk3566" ]]; then
         echo "This Platform is Rockchip based and a RK3566 SOC"
