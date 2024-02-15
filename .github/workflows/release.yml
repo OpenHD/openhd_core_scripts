@@ -48,7 +48,6 @@ jobs:
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/steamdeck.desktop
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/nm-tray-autostart.desktop
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/QOpenHD2.desktop
-          chmod a+x  openhd_sys_utils/etc/xdg/autostart/OpenHD-Ground.desktop
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/QOpenHD.desktop
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/INAV.desktop
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/MissionPlanner.desktop
