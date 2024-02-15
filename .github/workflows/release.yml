@@ -16,13 +16,18 @@ jobs:
         run: |
           ls -a
           mkdir -p openhd_sys_utils/usr/local/bin
-          chmod +x *.sh
           mv *.sh openhd_sys_utils/usr/local/bin
           mkdir -p openhd_sys_utils/etc/system/systemd/
           mv *.service openhd_sys_utils/etc/system/systemd/
+          mkdir -p openhd_sys_utils/usr/local/bin/x20/
+          mv x20/* openhd_sys_utils/usr/local/bin/x20/
+          chmod +x openhd_sys_utils/usr/local/bin/*.sh
+
           sudo gem install fpm
-          fpm -a armhf -s dir -t deb -n openhd_sys_utils -v 0.1 -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
-          fpm -a arm64 -s dir -t deb -n openhd_sys_utils -v 0.1 -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
+          VERSION="0.1-$(date +'%m/%d/%Y')"
+          VERSION=$(echo "$VERSION" | sed 's/\//-/g')
+          fpm -a armhf -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
+          fpm -a arm64 -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
           ls -a
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
