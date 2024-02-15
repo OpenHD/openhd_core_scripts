@@ -28,7 +28,7 @@ jobs:
           chmod +x openhd_sys_utils/usr/local/bin/x20/runcam_v2/*.sh
           sudo gem install fpm
 
-          VERSION="0.4-$(date +'%m/%d/%Y')"
+          VERSION="0.4-$(date +'%m/%d/%Y-%H/%M/%S')"
           VERSION=$(echo "$VERSION" | sed 's/\//-/g')
           fpm -a armhf -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
           fpm -a arm64 -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
