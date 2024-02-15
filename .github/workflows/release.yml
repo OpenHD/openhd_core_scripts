@@ -23,13 +23,37 @@ jobs:
           mv x20/* openhd_sys_utils/usr/local/bin/x20/
           chmod +x openhd_sys_utils/usr/local/bin/*.sh
           chmod +x openhd_sys_utils/usr/local/bin/x20/runcam_v2/*.sh
-
           sudo gem install fpm
+
           VERSION="0.2-$(date +'%m/%d/%Y')"
           VERSION=$(echo "$VERSION" | sed 's/\//-/g')
           fpm -a armhf -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
           fpm -a arm64 -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
-          ls -a
+          
+          mkdir -p openhd_sys_utils/etc/xdg/autostart/
+          mv shortcuts/OpenHD.desktop openhd_sys_utils/etc/xdg/autostart/
+          mv shortcuts/QOpenHD2.desktop openhd_sys_utils/etc/xdg/autostart/
+          mv shortcuts/steamdeck.desktop openhd_sys_utils/etc/xdg/autostart/
+          mv shortcuts/nm-tray-autostart.desktop openhd_sys_utils/etc/xdg/autostart/
+          mkdir -p openhd_sys_utils/usr/share/applications/
+          cp shortcuts/* openhd_sys_utils/usr/share/applications/
+          mkdir -p openhd_sys_utils/home/openhd/Desktop/
+          cp shortcuts/*.desktop openhd_sys_utils/home/openhd/Desktop/
+          mkdir -p openhd_sys_utils/opt/
+          cp shortcuts/*.ico openhd_sys_utils/opt/
+          chmod a+x  openhd_sys_utils/etc/xdg/autostart/OpenHD.desktop
+          chmod a+x  openhd_sys_utils/etc/xdg/autostart/steamdeck.desktop
+          chmod a+x  openhd_sys_utils/etc/xdg/autostart/nm-tray-autostart.desktop
+          chmod a+x  openhd_sys_utils/etc/xdg/autostart/QOpenHD2.desktop
+          chmod a+x  openhd_sys_utils/etc/xdg/autostart/OpenHD-Air.desktop
+          chmod a+x  openhd_sys_utils/etc/xdg/autostart/OpenHD-Ground.desktop
+          chmod a+x  openhd_sys_utils/etc/xdg/autostart/QOpenHD.desktop
+          chmod a+x  openhd_sys_utils/etc/xdg/autostart/INAV.desktop
+          chmod a+x  openhd_sys_utils/etc/xdg/autostart/MissionPlanner.desktop
+          chmod a+x  openhd_sys_utils/etc/xdg/autostart/qgroundcontrol.desktop
+          chmod a+x  openhd_sys_utils/etc/xdg/autostart/OpenHD-ImageWriter.desktop
+
+          fpm -a x86_64 -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -62,3 +86,16 @@ jobs:
           release: "any-version"
           republish: "true" # needed ONLY if version is not changing
           file: "*arm64.deb"
+      - name: Push3
+        id: push3
+        uses: cloudsmith-io/action@master
+        with:
+          api-key: ${{ secrets.CLOUDSMITH_API_KEY }}
+          command: "push"
+          format: "deb"
+          owner: "openhd"
+          repo: "release"
+          distro: "any-distro"
+          release: "any-version"
+          republish: "true" # needed ONLY if version is not changing
+          file: "*amd64.deb"
