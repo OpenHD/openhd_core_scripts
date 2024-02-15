@@ -5,4 +5,4 @@ Type=Application
 Terminal=false
 Exec=OpenHDImageWriter
 Name=OpenHD-ImageWriter
-Icon=/opt/OpenHD.ico
+Icon=/usr/local/share/openhd_misc/OpenHD.ico

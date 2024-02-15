@@ -5,4 +5,4 @@ Type=Application
 Terminal=false
 Exec=mono /opt/MissionPlanner/MissionPlanner.exe
 Name=MissionPlanner
-Icon=/opt/MissionPlanner.ico
+Icon=/usr/local/share/openhd_misc/MissionPlanner.ico

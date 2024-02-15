@@ -5,4 +5,4 @@ Type=Application
 Terminal=false
 Exec=gnome-terminal -e "bash -c 'sudo QOpenHD'"
 Name=QOpenHD
-Icon=/opt/OpenHD.ico
+Icon=/usr/local/share/openhd_misc/OpenHD.ico

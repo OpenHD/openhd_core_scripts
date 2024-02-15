@@ -5,4 +5,4 @@ Type=Application
 Terminal=false
 Exec=/opt/INAV/inav-configurator
 Name=INAV
-Icon=/opt/INAV.ico
+Icon=/usr/local/share/openhd_misc/INAV.ico

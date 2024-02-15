@@ -5,4 +5,4 @@ Type=Application
 Terminal=true
 Exec=gnome-terminal -e "bash -c 'sudo openhd -g'"
 Name=OpenHD-GROUND
-Icon=/opt/OpenHD.ico
+Icon=/usr/local/share/openhd_misc/OpenHD.ico

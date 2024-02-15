@@ -42,8 +42,7 @@ jobs:
           cp shortcuts/* openhd_sys_utils/usr/share/applications/
           mkdir -p openhd_sys_utils/home/openhd/Desktop/
           cp shortcuts/*.desktop openhd_sys_utils/home/openhd/Desktop/
-          mkdir -p openhd_sys_utils/opt/
-          cp shortcuts/*.ico openhd_sys_utils/opt/
+          cp shortcuts/*.ico openhd_sys_utils/usr/local/share/openhd_misc/
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/OpenHD.desktop
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/steamdeck.desktop
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/nm-tray-autostart.desktop

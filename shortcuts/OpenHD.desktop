@@ -5,4 +5,4 @@ Type=Application
 Terminal=true
 Exec=bash -c 'if [ -f /boot/openhd/openhd/ground.txt ] || [ -f /boot/openhd/openhd/air.txt ]; then sudo openhd; else echo "No Autostart"; fi'
 Name=OpenHD
-Icon=/opt/OpenHD.ico
+Icon=/usr/local/share/openhd_misc/OpenHD.ico

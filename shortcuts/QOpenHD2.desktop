@@ -5,4 +5,4 @@ Type=Application
 Terminal=false
 Exec=bash -c 'if [ -f /boot/openhd/openhd/ground.txt ]; then sudo QOpenHD; else echo "File /boot/openhd/openhd/ground.txt not found"; fi'
 Name=QOpenHD
-Icon=/opt/OpenHD.ico
+Icon=/usr/local/share/openhd_misc/OpenHD.ico

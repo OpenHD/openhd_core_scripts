@@ -3,7 +3,7 @@ Encoding=UTF-8
 Version=1.0
 Type=Application
 Terminal=false
-Icon=/opt/qgroundcontrol.ico
+Icon=/usr/local/share/openhd_misc/qgroundcontrol.ico
 Exec=/opt/QGC/QGroundControl.AppImage
 Name=QGroundControl
 
