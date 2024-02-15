@@ -14,7 +14,10 @@ jobs:
           fetch-depth: 0
       - name: Build
         run: |
-          ls -a
+          mkdir -p openhd_sys_utils/usr/local/share/openhd_misc
+          cp misc/* openhd_sys_utils/usr/local/share/openhd_misc
+          mkdir -p openhd_sys_utils/etc/
+          cp misc/motd openhd_sys_utils/etc/motd
           mkdir -p openhd_sys_utils/usr/local/bin
           mv *.sh openhd_sys_utils/usr/local/bin
           mkdir -p openhd_sys_utils/etc/system/systemd/
