@@ -21,8 +21,8 @@ jobs:
           cp misc/motd openhd_sys_utils/etc/motd
           mkdir -p openhd_sys_utils/usr/local/bin
           mv *.sh openhd_sys_utils/usr/local/bin
-          mkdir -p openhd_sys_utils/etc/system/systemd/
-          mv *.service openhd_sys_utils/etc/system/systemd/
+          mkdir -p openhd_sys_utils/etc/systemd/system
+          mv *.service openhd_sys_utils/etc/systemd/system/
           mkdir -p openhd_sys_utils/usr/local/bin/x20/
           mv x20/* openhd_sys_utils/usr/local/bin/x20/
           chmod +x openhd_sys_utils/usr/local/bin/*.sh
