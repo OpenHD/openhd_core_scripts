@@ -16,6 +16,7 @@ jobs:
         run: |
           mkdir -p openhd_sys_utils/usr/local/share/openhd_misc
           cp misc/* openhd_sys_utils/usr/local/share/openhd_misc
+          rm -Rf openhd_sys_utils/usr/local/share/openhd_misc/Wallpaper.png
           mkdir -p openhd_sys_utils/etc/
           cp misc/motd openhd_sys_utils/etc/motd
           mkdir -p openhd_sys_utils/usr/local/bin
