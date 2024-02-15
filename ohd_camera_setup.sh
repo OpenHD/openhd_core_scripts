@@ -129,12 +129,12 @@ if [[ "$supported_platform" == true ]]; then
             dtoverlayL1="dtoverlay=vc4-fkms-v3d${append}"
         fi
 
-        echo $dtoverlayL1 > /boot/config.txt
+        echo $dtoverlayL1 >> /boot/config.txt
 
         ## Line 2
         dtoverlayL2="dtoverlay=$cam_ident"
 
-        echo $dtoverlayL2 > /boot/config.txt
+        echo $dtoverlayL2 >> /boot/config.txt
 
     elif [[ "$board_type" == "rk3566" ]]; then
         echo "This Platform is Rockchip based and a RK3566 SOC"
