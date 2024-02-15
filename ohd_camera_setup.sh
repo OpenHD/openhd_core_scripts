@@ -92,17 +92,17 @@ if [[ "$supported_platform" == true ]]; then
         #echo "This Platform is a Raspberry Pi"
         # Copy better tuning file for 477m
         if [[ "$cam_type" == X_CAM_TYPE_RPI_LIBCAMERA_ARDUCAM_IMX477M ]]; then
-            if [ -e /usr/share/libcamera/ipa/raspberrypi/imx477_old.json ]; then
+            if [ -e /usr/share/libcamera/ipa/rpi/vc4/imx477_old.json ]; then
                 echo "No Custom Tuning needed!"
             else
-                mv /usr/share/libcamera/ipa/raspberrypi/imx477.json /usr/share/libcamera/ipa/raspberrypi/imx477_old.json
-                cp /usr/share/libcamera/ipa/raspberrypi/arducam-477m.json /usr/share/libcamera/ipa/raspberrypi/imx477.json
+                mv /usr/share/libcamera/ipa/rpi/vc4/imx477.json /usr/share/libcamera/ipa/rpi/vc4/imx477_old.json
+                cp /usr/share/libcamera/ipa/rpi/vc4/arducam-477m.json /usr/share/libcamera/ipa/rpi/vc4/imx477.json
             fi
         elif [[ "$cam_type" == X_CAM_TYPE_RPI_LIBCAMERA_RPIF_HQ_IMX477 ]]; then
             if [ -e /usr/share/libcamera/ipa/raspberrypi/imx477_old.json ]; then
-                rm /usr/share/libcamera/ipa/raspberrypi/imx477.json
-                mv /usr/share/libcamera/ipa/raspberrypi/imx477_old.json /usr/share/libcamera/ipa/raspberrypi/imx477.json
-                rm /usr/share/libcamera/ipa/raspberrypi/imx477_old.json
+                rm /usr/share/libcamera/ipa/rpi/vc4/imx477.json
+                mv /usr/share/libcamera/ipa/rpi/vc4/imx477_old.json /usr/share/libcamera/ipa/rpi/vc4/imx477.json
+                rm //usr/share/libcamera/ipa/rpi/vc4/imx477_old.json
             else
                 echo "No Custom Tuning needed!"
             fi
