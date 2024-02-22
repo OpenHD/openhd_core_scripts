@@ -86,8 +86,8 @@ else
 fi
 
 if [[ "$supported_platform" == true ]]; then
-    # echo $platform
-    # echo $board_type
+    echo $platform
+    echo $board_type
     if [[ "$platform" == "rpi" ]]; then
         #echo "This Platform is a Raspberry Pi"
         # Copy better tuning file for 477m
@@ -109,8 +109,8 @@ if [[ "$supported_platform" == true ]]; then
         fi
 
         # Preparing everything
-        # echo "Camera Type: $cam_type"
-        # echo "Current Config:" 
+        echo "Camera Type: $cam_type"
+        echo "Current Config:" 
         cp /boot/config.txt /boot/config.txt.bak
         grep '^dtoverlay' /boot/config.txt
         sed -i '/#OPENHD_DYNAMIC_CONTENT_BEGIN#/q' /boot/config.txt
