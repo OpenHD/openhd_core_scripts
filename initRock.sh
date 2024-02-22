@@ -47,22 +47,25 @@ fi
 
 if [[ -f "/boot/openhd/rock-rk3566.txt" ]]; then
     echo "Running on a rk3566 "
-    mkdir -p /usr/local/share/openhd/platform/rock/rk3566
-    touch /boot/openhd/IExecuted
-    config_file=$(find /boot/openhd/ -type f -name 'IMX*')
+
+    if [ -e /boot/openhd/camera1.txt ]; then 
+    bash /usr/local/bin/ohd_camera_setup.sh
+    touch /boot/openhd/IExecutedCameraSetup
+    fi
+    # config_file=$(find /boot/openhd/ -type f -name 'IMX*')
     
-    if [[ -n "$config_file" ]]; then
-        if [[ "$config_file" == *"/708"* ]]; then
-            cp "/boot/openhd/rock3_camera_configs/zero3w/imx708.conf" "/boot/extlinux/extlinux.conf"
-            echo "$config_file written"
-        elif [[ "$config_file" == *"/IMX462"* ]]; then
-            cp "/boot/openhd/rock3_camera_configs/zero3w/imx462.conf" "/boot/extlinux/extlinux.conf"
-            echo "$config_file written"
-        else
-            echo "No Camera configured"
-        fi
-    else
-        echo "Config file not found"
+    # if [[ -n "$config_file" ]]; then
+    #     if [[ "$config_file" == *"/708"* ]]; then
+    #         cp "/boot/openhd/rock3_camera_configs/zero3w/imx708.conf" "/boot/extlinux/extlinux.conf"
+    #         echo "$config_file written"
+    #     elif [[ "$config_file" == *"/IMX462"* ]]; then
+    #         cp "/boot/openhd/rock3_camera_configs/zero3w/imx462.conf" "/boot/extlinux/extlinux.conf"
+    #         echo "$config_file written"
+    #     else
+    #         echo "No Camera configured"
+    #     fi
+    # else
+    #     echo "Config file not found"
     fi
 
     if [[ -n "/boot/openhd/resize.txt" ]]; then
