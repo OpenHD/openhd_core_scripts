@@ -1,0 +1,16 @@
+[Unit]
+Description=rpi_audio_playback
+
+[Service]
+User=root
+
+# Audio playback - might or might not work ;)
+ExecStart=/bin/sh -c "gst-launch-1.0 udpsrc port=5610 caps="application/x-rtp, media=(string)audio, \
+                       clock-rate=(int)8000, encoding-name=(string)PCMA" ! rtppcmadepay ! \
+                       audio/x-alaw, rate=8000, channels=1 ! alawdec ! autoaudiosink sync=false"
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
