@@ -27,6 +27,8 @@ fi
 if [ -e /boot/openhd/air.txt ]; then 
   if [ -e /boot/openhd/camera1.txt ]; then 
   bash /usr/local/bin/ohd_camera_setup.sh
+  rm /boot/openhd/camera1.txt
+  reboot
   fi
 exit 0
 fi
