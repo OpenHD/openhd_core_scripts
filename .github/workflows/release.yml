@@ -30,6 +30,7 @@ jobs:
           sudo gem install fpm
 
           VERSION="0.4-$(date -d '+1 hour' +'%m-%d-%Y--%H-%M-%S')"
+          ls -a
           fpm -a armhf -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb --before-install before-install.sh --after-install after-install.sh
           fpm -a arm64 -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb --before-install before-install.sh --after-install after-install.sh
           
