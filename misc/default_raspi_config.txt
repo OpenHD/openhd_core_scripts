@@ -120,10 +120,6 @@ gpu_mem=128
 
 
 [all]
-dtoverlay=gpio-key,gpio=12,keycode=103,label="KEY_UP",gpio_pull=1
-dtoverlay=gpio-key,gpio=16,keycode=105,label="KEY_LEFT",gpio_pull=1
-dtoverlay=gpio-key,gpio=20,keycode=106,label="KEY_RIGHT",gpio_pull=1
-dtoverlay=gpio-key,gpio=21,keycode=108,label="KEY_DOWN",gpio_pull=1
 #WARNING ! OpenHD will modify the following lines if you select a different Cam config in QOpenHD
 #Do not edit anything here - if you want to manually edit the config.txt file, place your changes
 #before this part, aka before the [all] bracket
