@@ -13,8 +13,6 @@ elif [[ "$kernel_type" == "v7+" ]]; then
   board_type="rpi_3_"
 else
   # unsupported
-  sudo rm /etc/motd
-  sudo mv /etc/motd-unsupported /etc/motd
 fi
 
 ### Check if it is a groundstation and if yes, exit
