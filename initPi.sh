@@ -11,8 +11,6 @@ if [[ "$kernel_type" == "v7l+" ]]; then
 elif [[ "$kernel_type" == "v7+" ]]; then
   # fkms
   board_type="rpi_3_"
-else
-  # unsupported
 fi
 
 ### Check if it is a groundstation and if yes, exit
