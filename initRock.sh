@@ -52,6 +52,7 @@ if [[ -f "/boot/openhd/rock-rk3566.txt" ]]; then
         if [ -e /boot/openhd/camera1.txt ] && [ ! -e /boot/openhd/camera.txt ]; then 
         touch /boot/openhd/camera.txt
         bash /usr/local/bin/ohd_camera_setup.sh > /boot/openhd/camera.txt
+        sleep 5
         reboot
         fi
     exit 0
