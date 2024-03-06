@@ -88,6 +88,7 @@ fi
 if [[ "$supported_platform" == true ]]; then
     echo $platform
     echo $board_type
+    echo $cam_type
     if [[ "$platform" == "rpi" ]]; then
         #echo "This Platform is a Raspberry Pi"
         # Copy better tuning file for 477m
