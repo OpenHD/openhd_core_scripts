@@ -41,7 +41,7 @@ if [ -f "/boot/openhd/rock-rk3566.txt" ] || [ -f "/boot/openhd/openhd/rock-rk356
   echo "detected rk3566 device"
   if  [ -e /dev/mmcblk1p1 ]; then
     if  [ -e /home/openhd/Videos ]; then
-    mkdir /home/openhd/Videos_emmc
+    mkdir -p /home/openhd/Videos_emmc
     mv /home/openhd/Videos /home/openhd/Videos_emmc
     rm -Rf /home/openhd/Videos
     fi
