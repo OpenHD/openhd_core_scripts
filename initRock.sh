@@ -55,6 +55,7 @@ if [[ -f "/boot/openhd/rock-rk3566.txt" ]]; then
         rm -rf /boot/openhd/openhd
         mv /boot/temp/* /boot/openhd/
         rm -Rf /boot/temp
+        sleep 5
     fi
 
     if [ -e /boot/openhd/air.txt ]; then 
