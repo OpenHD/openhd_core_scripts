@@ -55,14 +55,21 @@ if [[ -f "/boot/openhd/rock-rk3566.txt" ]]; then
         rm -rf /boot/openhd/openhd
         mv /boot/temp/* /boot/openhd/
         rm -Rf /boot/temp
-        sleep 5
+        sleep 1
     fi
 
     if [ -e /boot/openhd/air.txt ]; then 
-        if [ -e /boot/openhd/camera1.txt ] && [ ! -e /boot/openhd/camera.txt ]; then 
+        if [ -e /boot/openhd/camera1.txt ] && [ ! -e /boot/openhd/camera.txt ]; then
+            #quite hacky now, but better then nothing
+            sudo systemctl stop h264_decode
+            sudo systemctl disable h264_decode
+            sudo systemctl stop openhd
+            sudo systemctl stop qopenhd
+            sudo systemctl disable qopenhd
             touch /boot/openhd/camera.txt
             bash /usr/local/bin/ohd_camera_setup.sh > /boot/openhd/camera.txt
-            sleep 5
+            sleep 2
+            bash /usr/local/bin/ohd_camera_setup.sh > /boot/openhd/camera.txt
             reboot
         fi
     exit 0
