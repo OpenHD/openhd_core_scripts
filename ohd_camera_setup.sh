@@ -159,6 +159,7 @@ if [[ "$supported_platform" == true ]]; then
                 if grep -n "append" /boot/extlinux/extlinux.conf | cut -d: -f1 | grep -q $line; then
                     echo $rk_config_line
                     awk -v line="$((line))" -v rk_config_line="$rk_config_line" 'NR == line {print rk_config_line} {print}' /boot/extlinux/extlinux.conf > tmpfile && mv tmpfile /boot/extlinux/extlinux.conf
+                    sudo systemctl disable h264_decode #This shouldn't be needed, but .. hey
                     break
                 else
                     echo "failed to read correct file."
