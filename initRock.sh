@@ -48,6 +48,15 @@ fi
 if [[ -f "/boot/openhd/rock-rk3566.txt" ]]; then
     echo "Running on a rk3566 "
 
+    if [ -e /boot/openhd/openhd ]; then
+    #Annoying hack to get files from mounted partition 
+    mkdir /boot/temp
+    mv -r /boot/openhd/openhd/* /boot/temp
+    rm -rf /boot/openhd/openhd
+    mv -r /boot/temp/* /boot/openhd/
+    rm -Rf /boot/temp
+    fi
+
     if [ -e /boot/openhd/air.txt ]; then 
         if [ -e /boot/openhd/camera1.txt ] && [ ! -e /boot/openhd/camera.txt ]; then 
         touch /boot/openhd/camera.txt
