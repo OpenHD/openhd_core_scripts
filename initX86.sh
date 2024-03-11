@@ -8,6 +8,5 @@ else
 fi
 
 depmod -a
-touch /boot/openhd/resize.txt
 sudo bash /usr/local/bin/openhd_resize_util.sh 53aa3d65-1043-49fa-8740-148cba90bbae 3
 rm /boot/openhd/resize.txt
