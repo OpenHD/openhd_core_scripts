@@ -113,6 +113,7 @@ if [[ "$supported_platform" == true ]]; then
         echo "Camera Type: $cam_type"
         echo "Current Config:" 
         cp /boot/config.txt /boot/config.txt.bak
+        sed -i '/^dtoverlay=gpio-key/d' /boot/config.txt
         grep '^dtoverlay' /boot/config.txt
         sed -i '/#OPENHD_DYNAMIC_CONTENT_BEGIN#/q' /boot/config.txt
 
