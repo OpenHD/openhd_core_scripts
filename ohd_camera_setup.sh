@@ -141,6 +141,8 @@ if [[ "$supported_platform" == true ]]; then
         ## Debug message
         echo $dtoverlayL1
         echo $dtoverlayL2
+        touch /boot/openhd/camera.txt
+
     elif [[ "$board_type" == "rk3566" ]]; then
         echo "This Platform is Rockchip based and a RK3566 SOC"
         if apt list --installed | grep -q "u-boot-radxa-zero3"; then
