@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Go green to say openhd is starting
+echo 0 >/sys/class/leds/openhd-x20dev\:red\:usr/brightness
+echo 1 >/sys/class/leds/openhd-x20dev\:green\:usr/brightness
+echo 0 >/sys/class/leds/openhd-x20dev\:blue\:usr/brightness
+
+
+nice --10 openhd --air >& /home/openhd/OpenHDLog.txt
+
+echo 1 >/sys/class/leds/openhd-x20dev\:red\:usr/brightness
+echo 0 >/sys/class/leds/openhd-x20dev\:green\:usr/brightness
+echo 0 >/sys/class/leds/openhd-x20dev\:blue\:usr/brightness
+
