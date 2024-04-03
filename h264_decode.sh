@@ -23,7 +23,8 @@ execute_fpvVideoDecode
 fi
 
 if [ -f "/boot/openhd/rock-rk3566.txt" ] || [ -f "/boot/openhd/openhd/rock-rk3566.txt" ]; then
-execute_PeteVideoDecode
+#execute_PeteVideoDecode
+execute_FPVueVideoDecode
 fi
 
 if [ -f "/boot/openhd/rock-5b.txt" ]; then
