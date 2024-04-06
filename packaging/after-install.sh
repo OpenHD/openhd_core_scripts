@@ -7,6 +7,7 @@ if [ -d /home/pi ]; then
 fi
 
 if [ ! -e "/usr/local/share/openhd_platform/x20" ]; then
+    echo "Non Custom Installation Found"
     rm -Rf /usr/local/bin/x20/
     systemctl disable temperature_guardian.service
 fi
