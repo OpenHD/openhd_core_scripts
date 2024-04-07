@@ -9,6 +9,7 @@ fi
 if [ ! -e "/usr/lib/modules/5.8.0/kernel/drivers/media/platform/sunxi" ]; then
     echo "Non Custom Installation Found"
     rm -Rf /usr/local/bin/x20/
+    rm -Rf /etc/systemd/system/temperature_guardian.service
     systemctl disable temperature_guardian.service
 else
  echo "You're using OpenHD Hardware, thank you"
