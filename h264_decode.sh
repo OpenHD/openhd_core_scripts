@@ -16,6 +16,9 @@ function execute_PeteVideoDecode {
 function execute_FPVueVideoDecode {
     gst-launch-1.0 udpsrc port=5600 caps='application/x-rtp, payload=(int)96, clock-rate=(int)90000, media=(string)video, encoding-name=(string)H264' ! rtph264depay ! h264parse config-interval=1 ! video/x-h264,stream-format=byte-stream,alignment=au ! fdsink fd=1 | fpvue  --rmode 10
 }
+function execute_FPVueVideoDecode2 {
+  fpvue  --gst-udp-port 5600 --rmode 5
+}
 
 # Detect Platform
 if [ -f "/boot/openhd/rpi.txt" ]; then
@@ -23,8 +26,9 @@ execute_fpvVideoDecode
 fi
 
 if [ -f "/boot/openhd/rock-rk3566.txt" ] || [ -f "/boot/openhd/openhd/rock-rk3566.txt" ]; then
-execute_PeteVideoDecode
+#execute_PeteVideoDecode
 #execute_FPVueVideoDecode
+execute_FPVueVideoDecode2
 fi
 
 if [ -f "/boot/openhd/rock-5b.txt" ]; then
