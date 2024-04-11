@@ -9,8 +9,8 @@ if [ -d /sys/class/leds/openhd-x20dev ]; then
     PLATFORM="x20"
 elif grep -q "Raspberry Pi" /proc/cpuinfo; then
     PLATFORM="pi"
-    if [-d /sys/class/leds/PWR/brightness ]; then
-    COLOR="green"
+    if [ -d /sys/class/leds/PWR ]; then
+        COLOR="green"
     fi
 fi
 
