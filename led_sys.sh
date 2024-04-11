@@ -7,8 +7,10 @@ COLOR=$3
 # Detect platform and LED-type
 if [ -d /sys/class/leds/openhd-x20dev ]; then
     PLATFORM="x20"
+    echo "x20"
 elif grep -q "Raspberry Pi" /proc/cpuinfo; then
     PLATFORM="pi"
+    echo "pi"
 fi
 
 # Main functions
@@ -51,8 +53,10 @@ LED_ON() {
     elif [ "$PLATFORM" == "pi" ]; then 
         if [ "$1" == "green" ]; then 
             echo 1 > /sys/class/leds/ACT/brightness
+            echo "green"
         elif [ "$1" == "red" ]; then
             echo 1 > /sys/class/leds/PWR/brightness
+            echo "red"
         fi
     fi
 }
@@ -69,23 +73,23 @@ LED_OFF() {
 }
 
 # LED mode Selection
-if [ "$TYPE" == "ON" ]; then 
+if [ "$TYPE" == "on" ]; then 
     LED_ON "$COLOR"
-elif [ "$TYPE" == "OFF" ]; then 
+elif [ "$TYPE" == "off" ]; then 
     LED_OFF
-elif [ "$TYPE" == "MANUAL" ]; then 
+elif [ "$TYPE" == "manual" ]; then 
     if [ -z "$MODIFIER" ]; then
         echo "Missing delay value for MANUAL mode."
     else
         echo "Flash LED with $MODIFIER delay"
     fi
-elif [ "$TYPE" == "Warning" ]; then 
+elif [ "$TYPE" == "warning" ]; then 
     if [ -z "$MODIFIER" ]; then
         echo "Missing value for Warning mode."
     else
         echo "LED Warning $MODIFIER"
     fi
-elif [ "$TYPE" == "Error" ]; then 
+elif [ "$TYPE" == "error" ]; then 
     if [ -z "$MODIFIER" ]; then
         echo "Missing value for Error mode."
     else
