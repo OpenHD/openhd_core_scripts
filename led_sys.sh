@@ -89,7 +89,7 @@ elif [ "$TYPE" == "manual" ]; then
     if [ -z "$MODIFIER" ]; then
         echo "Missing delay value for MANUAL mode."
     else
-        echo "Flash LED with $MODIFIER delay"
+        BLINK_LED
     fi
 elif [ "$TYPE" == "warning" ]; then 
     if [ -z "$MODIFIER" ]; then
