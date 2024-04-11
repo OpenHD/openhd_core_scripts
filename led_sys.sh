@@ -7,15 +7,12 @@ COLOR=$3
 # Detect platform and LED-type
 if [ -d /sys/class/leds/openhd-x20dev ]; then
     PLATFORM="x20"
-    echo "x20"
 elif grep -q "Raspberry Pi" /proc/cpuinfo; then
     PLATFORM="pi"
-    echo "pi"
 fi
 
 # Main functions
 LED_ON() {
-    echo "led"
     if [ "$PLATFORM" == "x20" ]; then 
         if [ "$3" == "red" ]; then 
             echo 1 > /sys/class/leds/openhd-x20dev:red:usr/brightness
@@ -52,13 +49,10 @@ LED_ON() {
             echo 1 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
         fi
     elif [ "$PLATFORM" == "pi" ]; then 
-    echo "led pi"
         if [ "$3" == "green" ]; then 
             echo 1 > /sys/class/leds/ACT/brightness
-            echo "green"
         elif [ "$3" == "red" ]; then
             echo 1 > /sys/class/leds/PWR/brightness
-            echo "red"
         fi
     fi
 }
