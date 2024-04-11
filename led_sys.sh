@@ -17,31 +17,31 @@ fi
 LED_ON() {
     echo "led"
     if [ "$PLATFORM" == "x20" ]; then 
-        if [ "$1" == "red" ]; then 
+        if [ "$2" == "red" ]; then 
             echo 1 > /sys/class/leds/openhd-x20dev:red:usr/brightness
             echo 0 > /sys/class/leds/openhd-x20dev:green:usr/brightness
             echo 0 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
-        elif [ "$1" == "green" ]; then
+        elif [ "$2" == "green" ]; then
             echo 0 > /sys/class/leds/openhd-x20dev:red:usr/brightness
             echo 1 > /sys/class/leds/openhd-x20dev:green:usr/brightness
             echo 0 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
-        elif [ "$1" == "blue" ]; then
+        elif [ "$2" == "blue" ]; then
             echo 0 > /sys/class/leds/openhd-x20dev:red:usr/brightness
             echo 0 > /sys/class/leds/openhd-x20dev:green:usr/brightness
             echo 1 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
-        elif [ "$1" == "cyan" ]; then
+        elif [ "$2" == "cyan" ]; then
             echo 0 > /sys/class/leds/openhd-x20dev:red:usr/brightness
             echo 1 > /sys/class/leds/openhd-x20dev:green:usr/brightness
             echo 1 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
-        elif [ "$1" == "magenta" ]; then
+        elif [ "$2" == "magenta" ]; then
             echo 1 > /sys/class/leds/openhd-x20dev:red:usr/brightness
             echo 0 > /sys/class/leds/openhd-x20dev:green:usr/brightness
             echo 1 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
-        elif [ "$1" == "yellow" ]; then
+        elif [ "$2" == "yellow" ]; then
             echo 1 > /sys/class/leds/openhd-x20dev:red:usr/brightness
             echo 1 > /sys/class/leds/openhd-x20dev:green:usr/brightness
             echo 0 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
-        elif [ "$1" == "white" ]; then
+        elif [ "$2" == "white" ]; then
             echo 1 > /sys/class/leds/openhd-x20dev:red:usr/brightness
             echo 1 > /sys/class/leds/openhd-x20dev:green:usr/brightness
             echo 1 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
@@ -53,10 +53,10 @@ LED_ON() {
         fi
     elif [ "$PLATFORM" == "pi" ]; then 
     echo "led pi"
-        if [ "$1" == "green" ]; then 
+        if [ "$2" == "green" ]; then 
             echo 1 > /sys/class/leds/ACT/brightness
             echo "green"
-        elif [ "$1" == "red" ]; then
+        elif [ "$2" == "red" ]; then
             echo 1 > /sys/class/leds/PWR/brightness
             echo "red"
         fi
@@ -76,7 +76,7 @@ LED_OFF() {
 
 # LED mode Selection
 if [ "$TYPE" == "on" ]; then 
-    LED_ON "$COLOR"
+    LED_ON
 elif [ "$TYPE" == "off" ]; then 
     LED_OFF
 elif [ "$TYPE" == "manual" ]; then 
