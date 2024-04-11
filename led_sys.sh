@@ -9,6 +9,9 @@ if [ -d /sys/class/leds/openhd-x20dev ]; then
     PLATFORM="x20"
 elif grep -q "Raspberry Pi" /proc/cpuinfo; then
     PLATFORM="pi"
+    if [-d /sys/class/leds/PWR/brightness ]; then
+    COLOR="green"
+    fi
 fi
 
 # Main functions
@@ -66,6 +69,15 @@ LED_OFF() {
         echo 0 > /sys/class/leds/ACT/brightness
         echo 0 > /sys/class/leds/PWR/brightness
     fi
+}
+
+BLINK_LED() {
+    while true; do
+       LED_ON
+       sleep $MODIFIER
+       LED_OFF
+       sleep $MODIFIER
+    done
 }
 
 # LED mode Selection
