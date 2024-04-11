@@ -3,14 +3,26 @@
 TYPE=$1
 MODIFIER=$2
 COLOR=$3
+DEBUG=$4
+
+debugMessage() {
+    if [ "$DEBUG" == "debug" ]; then
+        echo "$1"
+    fi
+}
 
 # Detect platform and LED-type
 if [ -d /sys/class/leds/openhd-x20dev ]; then
     PLATFORM="x20"
+    debugMessage "Platform: X20"
+
 elif grep -q "Raspberry Pi" /proc/cpuinfo; then
     PLATFORM="pi"
+    debugMessage "Platform: RPI"
+
     if [ -d /sys/class/leds/PWR ]; then
         COLOR="green"
+    debugMessage "Only One LED"
     fi
 fi
 
@@ -77,6 +89,7 @@ BLINK_LED() {
        sleep $MODIFIER
        LED_OFF
        sleep $MODIFIER
+       echo "debug"
     done
 }
 
