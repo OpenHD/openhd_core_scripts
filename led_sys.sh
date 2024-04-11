@@ -1,8 +1,8 @@
 #!/bin/bash
 
 TYPE=$1
-MODIFIER=$2
-COLOR=$3
+COLOR=$2
+MODIFIER=$3
 DEBUG=$4
 
 debugMessage() {
