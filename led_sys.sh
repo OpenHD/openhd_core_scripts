@@ -15,16 +15,8 @@ echo "________________"
 echo "on|off|manual|warning|error"
 fi
 
-#Create a Lock file so this isn't executed multiple times.
-if [ -d "/tmp/led.lock" ]; then
-    pid=$(cat /tmp/led.lock)
-    if [ -n "$pid" ]; then
-        kill -9 "$pid"
-        rm /tmp/led.lock
-    fi
-else
-    echo $$ > /tmp/led.lock
-fi
+#kill all previous instances
+pkill -f led_sys.sh
 
 debugMessage() {
     if [ "$DEBUG" == "debug" ]; then
