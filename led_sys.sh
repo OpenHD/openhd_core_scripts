@@ -100,10 +100,39 @@ LED_ON() {
 
 LED_OFF() {
     if [ "$PLATFORM" == "x20" ]; then 
-        echo 0 > /sys/class/leds/openhd-x20dev:red:usr/brightness
-        echo 0 > /sys/class/leds/openhd-x20dev:green:usr/brightness
-        echo 0 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
-        debugMessage "LEDs off" 
+        if [ "$COLOR" == "red" ]; then 
+            echo 0 > /sys/class/leds/openhd-x20dev:red:usr/brightness
+            debugMessage "Red LED off"
+        elif [ "$COLOR" == "green" ]; then
+            echo 0 > /sys/class/leds/openhd-x20dev:green:usr/brightness
+            debugMessage "Green LED off"            
+        elif [ "$COLOR" == "blue" ]; then
+            echo 0 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
+            debugMessage "Blue LED off"
+        elif [ "$COLOR" == "cyan" ]; then
+            echo 0 > /sys/class/leds/openhd-x20dev:green:usr/brightness
+            echo 0 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
+            debugMessage "Cyan LED off"  
+        elif [ "$COLOR" == "magenta" ]; then
+            echo 0 > /sys/class/leds/openhd-x20dev:red:usr/brightness
+            echo 0 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
+            debugMessage "Magenta LED off"  
+        elif [ "$COLOR" == "yellow" ]; then
+            echo 0 > /sys/class/leds/openhd-x20dev:red:usr/brightness
+            echo 0 > /sys/class/leds/openhd-x20dev:green:usr/brightness
+            debugMessage "Yellow LED off"  
+        elif [ "$COLOR" == "white" ]; then
+            echo 0 > /sys/class/leds/openhd-x20dev:red:usr/brightness
+            echo 0 > /sys/class/leds/openhd-x20dev:green:usr/brightness
+            echo 0 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
+            debugMessage "White LED off"  
+        else
+            #set it to white if no or wrong argument is passed
+            echo 0 > /sys/class/leds/openhd-x20dev:red:usr/brightness
+            echo 0 > /sys/class/leds/openhd-x20dev:green:usr/brightness
+            echo 0 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
+            debugMessage "White LED off" 
+        fi
     elif [ "$PLATFORM" == "pi" ]; then
         if [ "$COLOR" == "green" ]; then 
             echo 0 > /sys/class/leds/ACT/brightness
