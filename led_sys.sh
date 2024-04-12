@@ -202,7 +202,18 @@ elif [ "$TYPE" == "error" ]; then
         DELAY2="100"
         COLOR1="green"
         COLOR2="red"
+        BLINK_LED_ASYNC_MULTI_2
+        debugMessage "LED Error $MODIFIER" 
+    fi
+elif [ "$TYPE" == "flashing" ]; then 
+    if [ -z "$MODIFIER" ]; then
+        echo "Missing value for Error mode."
+    else
+        DELAY1="50"
+        DELAY2="100"
+        COLOR1="green"
+        COLOR2="red"
         BLINK_LED_ASYNC_MULTI_SWITCHING
-        debugMessage "LED Warning $MODIFIER" 
+        debugMessage "LED $MODIFIER" 
     fi
 fi
