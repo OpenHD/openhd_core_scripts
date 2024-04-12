@@ -213,8 +213,8 @@ elif [ "$TYPE" == "error" ]; then
         debugMessage "LED Error $MODIFIER" 
     fi
 elif [ "$TYPE" == "flashing" ]; then 
-        DELAY1="100"
-        DELAY2="100"
+        DELAY1="20"
+        DELAY2="50"
         COLOR1="green"
         COLOR2="red"
         BLINK_LED_ASYNC_MULTI_SWITCHING
