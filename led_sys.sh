@@ -5,16 +5,16 @@ COLOR=$2
 MODIFIER=$3
 DEBUG=$4
 
-# #Create a Lock file so this isn't executed multiple times.
-# if [ -d "/tmp/led.lock" ]; then
-#     pid=$(cat /tmp/led.lock)
-#     if [ -n "$pid" ]; then
-#         kill -9 "$pid"
-#         rm /tmp/led.lock
-#     fi
-# else
-#     echo $$ > /tmp/led.lock
-# fi
+#Create a Lock file so this isn't executed multiple times.
+if [ -d "/tmp/led.lock" ]; then
+    pid=$(cat /tmp/led.lock)
+    if [ -n "$pid" ]; then
+        kill -9 "$pid"
+        rm /tmp/led.lock
+    fi
+else
+    echo $$ > /tmp/led.lock
+fi
 
 debugMessage() {
     if [ "$DEBUG" == "debug" ]; then
