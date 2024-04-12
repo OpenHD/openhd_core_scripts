@@ -119,6 +119,14 @@ BLINK_LED() {
        sleep $(echo "$MODIFIER * 0.01" | bc)
     done
 }
+BLINK_LED_ASYNC() {
+    while true; do
+       LED_ON
+       sleep $(echo "$DELAY1 * 0.01" | bc)
+       LED_OFF
+       sleep $(echo "$DELAY1 * 0.01" | bc)
+    done
+}
 
 # LED mode Selection
 if [ "$TYPE" == "on" ]; then 
@@ -135,12 +143,20 @@ elif [ "$TYPE" == "warning" ]; then
     if [ -z "$MODIFIER" ]; then
         echo "Missing value for Warning mode."
     else
-        echo "LED Warning $MODIFIER"
+        COLOR="green"
+        DELAY1="50"
+        DELAY2="200"
+        BLINK_LED_ASYNC
+        debugMessage "LED Warning $MODIFIER" 
     fi
 elif [ "$TYPE" == "error" ]; then 
     if [ -z "$MODIFIER" ]; then
         echo "Missing value for Error mode."
     else
-        echo "LED Error $MODIFIER"
+        COLOR="red"
+        DELAY1="50"
+        DELAY2="200"
+        BLINK_LED_ASYNC
+        debugMessage "LED Warning $MODIFIER" 
     fi
 fi
