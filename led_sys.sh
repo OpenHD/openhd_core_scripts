@@ -141,6 +141,23 @@ BLINK_LED_ASYNC_MULTI() {
        sleep $(echo "$DELAY2 * 0.01" | bc)
     done
 }
+BLINK_LED_ASYNC_MULTI_2() {
+    while true; do
+       COLOR=$COLOR1
+       LED_ON
+       sleep $(echo "$DELAY1 * 0.01" | bc)
+       COLOR=$COLOR2
+       LED_ON
+       sleep $(echo "$DELAY1 * 0.01" | bc)
+       COLOR=$COLOR1
+       LED_OFF
+       sleep $(echo "$DELAY2 * 0.01" | bc)
+       COLOR=$COLOR2
+       LED_OFF
+       sleep $(echo "$DELAY2 * 0.01" | bc)
+    done
+}
+
 
 # LED mode Selection
 if [ "$TYPE" == "on" ]; then 
@@ -171,7 +188,7 @@ elif [ "$TYPE" == "error" ]; then
         DELAY2="200"
         COLOR1="green"
         COLOR2="red"
-        BLINK_LED_ASYNC_MULTI
+        BLINK_LED_ASYNC_MULTI_2
         debugMessage "LED Warning $MODIFIER" 
     fi
 fi
