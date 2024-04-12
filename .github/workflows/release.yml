@@ -46,7 +46,7 @@ jobs:
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/steamdeck.desktop
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/nm-tray-autostart.desktop
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/QOpenHD2.desktop
-          fpm -a x86_64 -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb -d "bc"
+          fpm -a x86_64 -s dir -t deb -n openhd-sys-utils -v "$VERSION" -C openhd_sys_utils -p openhd-sys-utils_VERSION_ARCH.deb -d "bc"
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
