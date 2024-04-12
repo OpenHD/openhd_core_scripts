@@ -10,6 +10,7 @@ if [ -d "/tmp/led.lock" ]; then
     pid=$(cat /tmp/led.lock)
     if [ -n "$pid" ]; then
         kill -9 "$pid"
+        rm /tmp/led.lock
     fi
 else
     echo $$ > /tmp/led.lock
@@ -21,7 +22,6 @@ debugMessage() {
         echo "debug"
     fi
 }
-
 
 # Detect platform and LED-type
 if [ -d /sys/class/leds/openhd-x20dev ]; then
