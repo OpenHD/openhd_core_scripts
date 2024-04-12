@@ -15,8 +15,8 @@ echo "________________"
 echo "on|off|manual|warning|error"
 fi
 
-#kill all previous instances
-pkill -f led_sys.sh
+# #kill all previous instances
+# pkill -f led_sys.sh
 
 debugMessage() {
     if [ "$DEBUG" == "debug" ]; then
