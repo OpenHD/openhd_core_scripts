@@ -105,9 +105,16 @@ LED_OFF() {
         echo 0 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
         debugMessage "LEDs off" 
     elif [ "$PLATFORM" == "pi" ]; then
-        echo 0 > /sys/class/leds/ACT/brightness
-        echo 0 > /sys/class/leds/PWR/brightness
-        debugMessage "LEDs off" 
+        if [ "$COLOR" == "green" ]; then 
+            echo 0 > /sys/class/leds/ACT/brightness
+            debugMessage "Green LED off" 
+        elif [ "$COLOR" == "red" ]; then
+            echo 0 > /sys/class/leds/PWR/brightness
+            debugMessage "Red LED off" 
+        else 
+            echo 0 > /sys/class/leds/ACT/brightness
+            echo 0 > /sys/class/leds/PWR/brightness
+        fi
     fi
 }
 
@@ -206,7 +213,7 @@ elif [ "$TYPE" == "error" ]; then
         debugMessage "LED Error $MODIFIER" 
     fi
 elif [ "$TYPE" == "flashing" ]; then 
-        DELAY1="50"
+        DELAY1="100"
         DELAY2="100"
         COLOR1="green"
         COLOR2="red"
