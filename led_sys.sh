@@ -99,6 +99,9 @@ LED_ON() {
         elif [ "$COLOR" == "red" ]; then
             echo 1 > /sys/class/leds/PWR/brightness
             debugMessage "Red LED on" 
+        else 
+            echo 1 > /sys/class/leds/ACT/brightness
+            echo 1 > /sys/class/leds/PWR/brightness
         fi
     fi
 }
