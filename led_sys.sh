@@ -87,10 +87,9 @@ LED_OFF() {
 BLINK_LED() {
     while true; do
        LED_ON
-       sleep $MODIFIER
+       sleep $(echo "$MODIFIER/100" | bc -l)
        LED_OFF
-       sleep $MODIFIER
-       echo "debug"
+       sleep $(echo "$MODIFIER/100" | bc -l)
     done
 }
 
