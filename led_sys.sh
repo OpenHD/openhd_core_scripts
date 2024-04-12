@@ -5,6 +5,16 @@ COLOR=$2
 MODIFIER=$3
 DEBUG=$4
 
+if [ "$TYPE" == "" ]; then 
+echo "OpenHD LED Control"
+echo "__________________"
+echo "usage:"
+echo "led TYPE COLOR DELAY DEBUG"
+echo "available types:"
+echo "________________"
+echo "on|off|manual|warning|error"
+fi
+
 #Create a Lock file so this isn't executed multiple times.
 if [ -d "/tmp/led.lock" ]; then
     pid=$(cat /tmp/led.lock)
