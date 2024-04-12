@@ -124,7 +124,7 @@ BLINK_LED_ASYNC() {
        LED_ON
        sleep $(echo "$DELAY1 * 0.01" | bc)
        LED_OFF
-       sleep $(echo "$DELAY1 * 0.01" | bc)
+       sleep $(echo "$DELAY2 * 0.01" | bc)
     done
 }
 BLINK_LED_ASYNC_MULTI() {
@@ -133,12 +133,12 @@ BLINK_LED_ASYNC_MULTI() {
        LED_ON
        sleep $(echo "$DELAY1 * 0.01" | bc)
        LED_OFF
-       sleep $(echo "$DELAY1 * 0.01" | bc)
+       sleep $(echo "$DELAY2 * 0.01" | bc)
        COLOR=$COLOR2
        LED_ON
        sleep $(echo "$DELAY1 * 0.01" | bc)
        LED_OFF
-       sleep $(echo "$DELAY1 * 0.01" | bc)
+       sleep $(echo "$DELAY2 * 0.01" | bc)
     done
 }
 
