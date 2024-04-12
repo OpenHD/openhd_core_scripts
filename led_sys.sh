@@ -151,6 +151,4 @@ elif [ "$TYPE" == "error" ]; then
     else
         echo "LED Error $MODIFIER"
     fi
-else
-    echo "Unknown LED control type: $TYPE"
 fi
