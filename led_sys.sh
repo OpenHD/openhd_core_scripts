@@ -9,8 +9,6 @@ debugMessage() {
     if [ "$DEBUG" == "debug" ]; then
         echo "$1"
         echo "debug"
-    else
-        echo "non debug"
     fi
 }
 
@@ -23,9 +21,9 @@ elif grep -q "Raspberry Pi" /proc/cpuinfo; then
     PLATFORM="pi"
     debugMessage "Platform: RPI"
 
-    if [ -d /sys/class/leds/PWR ]; then
+    if [ ! -d /sys/class/leds/PWR ]; then
         COLOR="green"
-    debugMessage "Only One LED"
+        debugMessage "Only One LED"
     fi
 fi
 
