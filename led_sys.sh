@@ -16,7 +16,7 @@ echo "on|off|manual|warning|error"
 fi
 
 # #kill all previous instances
-# pkill -f led_sys.sh
+pgrep -f led_sys.sh | grep -v $$ | xargs --no-run-if-empty kill -9
 
 debugMessage() {
     if [ "$DEBUG" == "debug" ]; then
