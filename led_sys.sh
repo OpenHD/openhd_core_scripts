@@ -166,9 +166,9 @@ BLINK_LED_ASYNC_MULTI_SWITCHING() {
        sleep $(echo "$DELAY1 * 0.01" | bc)
        COLOR=$COLOR2
        LED_ON
-       COLOR=$COLOR3
+       COLOR=$COLOR1
        LED_OFF
-       sleep $(echo "$DELAY1 * 0.01" | bc)
+       sleep $(echo "$DELAY2 * 0.01" | bc)
     done
 }
 
