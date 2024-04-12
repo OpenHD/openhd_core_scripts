@@ -37,6 +37,9 @@ elif grep -q "Raspberry Pi" /proc/cpuinfo; then
         COLOR="green"
         debugMessage "Only One LED"
     fi
+elif [ ! -d /sys/class/leds/user-led/brightness ]; then
+        PLATFORM="cm3"
+        debugMessage "Only One LED"
 fi
 
 # Main functions
@@ -95,6 +98,8 @@ LED_ON() {
             echo 1 > /sys/class/leds/ACT/brightness
             echo 1 > /sys/class/leds/PWR/brightness
         fi
+    elif [ "$PLATFORM" == "cm3" ]; then
+        echo 1 > /sys/class/leds/user-led/brightness
     fi
 }
 
@@ -144,6 +149,8 @@ LED_OFF() {
             echo 0 > /sys/class/leds/ACT/brightness
             echo 0 > /sys/class/leds/PWR/brightness
         fi
+    elif [ "$PLATFORM" == "cm3" ]; then
+        echo 0 > /sys/class/leds/user-led/brightness
     fi
 }
 
