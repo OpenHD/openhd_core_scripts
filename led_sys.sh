@@ -6,16 +6,16 @@ MODIFIER=$3
 DEBUG=$4
 
 if [ "$TYPE" == "" ]; then 
-echo "OpenHD LED Control"
-echo "__________________"
-echo "usage:"
-echo "led TYPE COLOR DELAY DEBUG"
-echo "available types:"
-echo "________________"
-echo "on|off|manual|warning|error"
+    echo "OpenHD LED Control"
+    echo "__________________"
+    echo "usage:"
+    echo "led TYPE COLOR DELAY DEBUG"
+    echo "available types:"
+    echo "________________"
+    echo "on|off|manual|warning|error"
 fi
 
-# #kill all previous instances
+# Kill all previous instances
 pgrep -f led_sys.sh | grep -v $$ | xargs --no-run-if-empty kill -9
 
 debugMessage() {
@@ -38,8 +38,8 @@ elif grep -q "Raspberry Pi" /proc/cpuinfo; then
         debugMessage "Only One LED"
     fi
 elif [ ! -d /sys/class/leds/user-led/brightness ]; then
-        PLATFORM="cm3"
-        debugMessage "Only One LED"
+    PLATFORM="cm3"
+    debugMessage "Only One LED"
 fi
 
 # Main functions
@@ -81,7 +81,7 @@ LED_ON() {
             echo 1 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
             debugMessage "White LED on"  
         else
-            #set it to white if no or wrong argument is passed
+            # Set it to white if no or wrong argument is passed
             echo 1 > /sys/class/leds/openhd-x20dev:red:usr/brightness
             echo 1 > /sys/class/leds/openhd-x20dev:green:usr/brightness
             echo 1 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
@@ -112,6 +112,7 @@ LED_ON() {
             echo 1 > /sys/class/leds/user-led/brightness
             echo 1 > /sys/class/leds/pi-led-green/brightness
             echo 1 > /sys/class/leds/pwr-led-red/brightness
+        fi
     fi
 }
 
@@ -144,7 +145,7 @@ LED_OFF() {
             echo 0 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
             debugMessage "White LED off"  
         else
-            #set it to white if no or wrong argument is passed
+            # Set it to white if no or wrong argument is passed
             echo 0 > /sys/class/leds/openhd-x20dev:red:usr/brightness
             echo 0 > /sys/class/leds/openhd-x20dev:green:usr/brightness
             echo 0 > /sys/class/leds/openhd-x20dev:blue:usr/brightness
@@ -175,6 +176,7 @@ LED_OFF() {
             echo 0 > /sys/class/leds/user-led/brightness
             echo 0 > /sys/class/leds/pi-led-green/brightness
             echo 0 > /sys/class/leds/pwr-led-red/brightness
+        fi
     fi
 }
 
@@ -238,7 +240,6 @@ BLINK_LED_ASYNC_MULTI_SWITCHING() {
        sleep $(echo "$DELAY2 * 0.01" | bc)
     done
 }
-
 
 # LED mode Selection
 if [ "$TYPE" == "on" ]; then 
