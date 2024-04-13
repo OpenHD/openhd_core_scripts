@@ -103,7 +103,7 @@ if [[ "$supported_platform" == true ]]; then
             if [ -e /usr/share/libcamera/ipa/raspberrypi/imx477_old.json ]; then
                 rm /usr/share/libcamera/ipa/rpi/vc4/imx477.json
                 mv /usr/share/libcamera/ipa/rpi/vc4/imx477_old.json /usr/share/libcamera/ipa/rpi/vc4/imx477.json
-                rm //usr/share/libcamera/ipa/rpi/vc4/imx477_old.json
+                rm /usr/share/libcamera/ipa/rpi/vc4/imx477_old.json
             else
                 echo "No Custom Tuning needed!"
             fi
