@@ -99,7 +99,19 @@ LED_ON() {
             echo 1 > /sys/class/leds/PWR/brightness
         fi
     elif [ "$PLATFORM" == "cm3" ]; then
-        echo 1 > /sys/class/leds/user-led/brightness
+        if [ "$COLOR" == "green" ]; then 
+            echo 1 > /sys/class/leds/user-led/brightness
+            debugMessage "Green LED on" 
+        elif [ "$COLOR" == "green-pi" ]; then 
+            echo 1 > /sys/class/leds/pi-led-green/brightness
+            debugMessage "Green Pi LED on"
+        elif [ "$COLOR" == "red" ]; then 
+            echo 1 > /sys/class/leds/pwr-led-red/brightness
+            debugMessage "Red LED on"
+        else
+            echo 1 > /sys/class/leds/user-led/brightness
+            echo 1 > /sys/class/leds/pi-led-green/brightness
+            echo 1 > /sys/class/leds/pwr-led-red/brightness
     fi
 }
 
@@ -150,7 +162,19 @@ LED_OFF() {
             echo 0 > /sys/class/leds/PWR/brightness
         fi
     elif [ "$PLATFORM" == "cm3" ]; then
-        echo 0 > /sys/class/leds/user-led/brightness
+        if [ "$COLOR" == "green" ]; then 
+            echo 0 > /sys/class/leds/user-led/brightness
+            debugMessage "Green LED off" 
+        elif [ "$COLOR" == "green-pi" ]; then 
+            echo 0 > /sys/class/leds/pi-led-green/brightness
+            debugMessage "Green Pi LED off"
+        elif [ "$COLOR" == "red" ]; then 
+            echo 0 > /sys/class/leds/pwr-led-red/brightness
+            debugMessage "Red LED off"
+        else
+            echo 0 > /sys/class/leds/user-led/brightness
+            echo 0 > /sys/class/leds/pi-led-green/brightness
+            echo 0 > /sys/class/leds/pwr-led-red/brightness
     fi
 }
 
