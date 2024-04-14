@@ -15,8 +15,7 @@ debugMessage() {
 }
 
 led() {
-    # Replace with actual led control script or command
-    echo "led $@"
+    led_sys.sh "$@"
 }
 
 # Detect platform
