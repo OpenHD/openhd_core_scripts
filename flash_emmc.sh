@@ -14,7 +14,7 @@ debugMessage() {
 
 led() {
     debugMessage "Executing led_sys.sh with argument: $1"
-    led_sys.sh "$1"
+    led_sys.sh "$@"
 }
 
 # Detect platform
