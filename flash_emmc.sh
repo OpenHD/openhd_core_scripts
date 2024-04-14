@@ -13,7 +13,7 @@ debugMessage() {
 }
 
 led() {
-    debugMessage "Executing led_sys.sh with argument: $1"
+    debugMessage "Executing led_sys.sh with argument: $@"
     led_sys.sh "$@"
 }
 
