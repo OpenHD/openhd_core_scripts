@@ -15,7 +15,7 @@ debugMessage() {
 }
 
 led() {
-    led_sys.sh "$@" 2>/dev/null
+    led_sys.sh "$@"
 }
 
 # Detect platform
@@ -64,7 +64,7 @@ fullscale=,white
 
 # Main Function of this script 
 led off
-led manual all 2 &
+led manual all 2 &  2>/dev/null
 
 if [ -f /opt/additionalFiles/emmc.img ]; then
     (pv -n /opt/additionalFiles/emmc.img | dd of="$TARGET" bs=128M conv=notrunc,noerror) 2>&1 | whiptail --gauge "Flashing OpenHD to EMMC, please wait..." 10 70 0
