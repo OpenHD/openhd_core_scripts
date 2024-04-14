@@ -13,7 +13,8 @@ debugMessage() {
 }
 
 led() {
-led_sys.sh $1
+    # Execute led_sys.sh with the provided argument
+    led_sys.sh "$1"
 }
 
 # Detect platform
@@ -40,7 +41,6 @@ debugMessage "____ Memory Card: $CARD ____"
 
 # Main Function of this script 
 led off
-led_sys.sh on
 led manual all 5
 sleep 3
     #  -e '\nexport NEWT_COLORS='\''\nroot=,black\nwindow=black,black\nborder=black,black\ntextbox=white,black\nbutton=white,black\nemptyscale=,black\nfullscale=,white\n'\'' \\\n\n(pv -n /opt/additionalFiles/emmc.img | dd of=/dev/mmcblk0 bs=128M conv=notrunc,noerror) 2>&1 | whiptail --gauge "Flashing OpenHD to EMMC, please wait..." 10 70 0\necho "please reboot or powerdown the system now"' >> /root/.bashrc
