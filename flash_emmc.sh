@@ -6,6 +6,7 @@
 
 debugMessage() {
     if [ "$DEBUG" == "debug" ]; then
+        echo "$(date '+%Y-%m-%d %H:%M:%S') $1" 
         echo "$(date '+%Y-%m-%d %H:%M:%S') $1" >> /boot/openhd/flash.log
     fi
 }
@@ -26,11 +27,15 @@ fi
 PARTITION=$(df -h / | awk 'NR==2 {print $1}')
 CARD=$(df -h / | awk 'NR==2 {gsub(/[0-9]+p/, "", $1); print $1}')
 
+# Debug output
+DEBUG="debug"
+debugMessage "____Platform____"
+debugMessage "____"$PLATFORM"____"
+debugMessage "____Partition____"
+debugMessage "____"$PARTITION"____"
+debugMessage "____Memory Card____"
+debugMessage "____"$CARD"____"
+
 
 # Main Function of this script 
-echo "____Platform____"
-echo $PLATFORM
-echo "____Partition____"
-echo $PARTITION
-echo "____Memory Card____"
-echo $CARD
+
