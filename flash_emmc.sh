@@ -32,9 +32,9 @@ fi
 PARTITION=$(df -h / | awk 'NR==2 {print $1}')
 CARD=$(df --output=source / | tail -n 1 | cut -d'p' -f1)
 if [ "$CARD" == "/dev/mmcblk0" ]; then
-    TARGET="/dev/mmcblk0"
-elif [ "$CARD" == "/dev/mmcblk1" ]; then
     TARGET="/dev/mmcblk1"
+elif [ "$CARD" == "/dev/mmcblk1" ]; then
+    TARGET="/dev/mmcblk0"
 else 
     exit 1
 fi
@@ -60,9 +60,6 @@ fullscale=,white
 # Main Function of this script 
 led off
 led manual all 2 &
-
-pv -n /opt/additionalFiles/emmc.img | dd of="$TARGET" bs=128M conv=notrunc
-echo "Please reboot or power down the system now"
 
 mkdir -p /media/new
 mount "$TARGET"p1 /media/new
