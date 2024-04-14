@@ -4,6 +4,9 @@
 # Works on Radxa boards only
 # X20, CM3, Zero3W(E), CM5, Rock5A Rock5B
 
+DEBUG=$1
+
+
 debugMessage() {
     if [ "$DEBUG" == "debug" ]; then
         [ -d /boot/openhd ] || mkdir -p /boot/openhd && touch /boot/openhd/flash.log
@@ -40,7 +43,6 @@ else
 fi
 
 # Debug output
-DEBUG="debug"
 debugMessage "____ Platform: $PLATFORM ____"
 debugMessage "____ Partition: $PARTITION ____"
 debugMessage "____ Memory Card: $CARD ____"
@@ -60,7 +62,13 @@ fullscale=,white
 # Main Function of this script 
 led off
 led manual all 2 &
-(pv -n /opt/additionalFiles/emmc.img | dd of=$TARGET bs=128M conv=notrunc,noerror) 2>&1 | whiptail --gauge "Flashing OpenHD to EMMC, please wait..." 10 70 0
+if [ -d /opt/additionalFiles/emmc.img ]; then
+    (pv -n /opt/additionalFiles/emmc.img | dd of=$TARGET bs=128M conv=notrunc,noerror) 2>&1 | whiptail --gauge "Flashing OpenHD to EMMC, please wait..." 10 70 0
+else
+    debugMessage "failed"
+    led off
+    led on
+fi
 mkdir -p /media/new
 mount "$TARGET"p1 /media/new
 cp -r /boot/openhd/* /media/new/openhd/
