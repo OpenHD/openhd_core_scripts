@@ -13,7 +13,7 @@ debugMessage() {
 }
 
 led() {
-    led_sys.sh "$@"
+    led_sys.sh "$@" &
 }
 
 # Detect platform
