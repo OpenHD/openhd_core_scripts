@@ -26,7 +26,7 @@ fi
 
 # Detect which partition is currently used
 PARTITION=$(df -h / | awk 'NR==2 {print $1}')
-CARD=$(df -h / | awk 'NR==2 {gsub(/[0-9]+p/, "", $1); print $1}')
+CARD=$(df --output=source / | tail -n 1 | cut -d'p' -f1)
 
 # Debug output
 DEBUG="debug"
