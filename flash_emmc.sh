@@ -28,5 +28,5 @@ Partition= df -h / | awk 'NR==2 {print $1}'
 
 # Main Function of this script 
 echo $PLATFORM
-ehco "_______"
+echo "_______"
 echo $Partition
