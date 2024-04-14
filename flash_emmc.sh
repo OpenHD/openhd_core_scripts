@@ -12,6 +12,10 @@ debugMessage() {
     fi
 }
 
+led() {
+echo "debug"
+}
+
 # Detect platform
 if [ -d /sys/class/leds/openhd-x20dev ]; then
     PLATFORM="x20"
