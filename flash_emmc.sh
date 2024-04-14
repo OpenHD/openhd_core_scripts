@@ -42,6 +42,7 @@ debugMessage "____ Memory Card: $CARD ____"
 led off
 led manual all 2
     #  -e '\nexport NEWT_COLORS='\''\nroot=,black\nwindow=black,black\nborder=black,black\ntextbox=white,black\nbutton=white,black\nemptyscale=,black\nfullscale=,white\n'\'' \\\n\n(pv -n /opt/additionalFiles/emmc.img | dd of=/dev/mmcblk0 bs=128M conv=notrunc,noerror) 2>&1 | whiptail --gauge "Flashing OpenHD to EMMC, please wait..." 10 70 0\necho "please reboot or powerdown the system now"' >> /root/.bashrc
+echo "debug"
 mkdir -p /media/new
 mount /dev/mmcblk0p1 /media/new
 cp -r /boot/openhd/* /media/new/openhd/
