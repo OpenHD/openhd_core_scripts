@@ -76,6 +76,8 @@ if [ -f /opt/additionalFiles/emmc.img ]; then
     cp -r /boot/openhd/* /media/new/openhd/
     debugMessage "Copied openhd config files!"
     led off
+    rm /opt/additionalFiles/emmc.img
+    dd if=/dev/zero bs=1M count=250 | pv | dd of="$CARD" bs=1M
     reboot
 else
     debugMessage "Failed: emmc.img not found"
