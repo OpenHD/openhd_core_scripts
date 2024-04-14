@@ -31,12 +31,20 @@ fi
 # Detect which partition is currently used
 PARTITION=$(df -h / | awk 'NR==2 {print $1}')
 CARD=$(df --output=source / | tail -n 1 | cut -d'p' -f1)
+if [ $CARD == "/dev/mmcblk0" ]; then
+    TARGET="/dev/mmcblk0"
+elif [ $CARD == "/dev/mmcblk0" ]; then
+    TARGET="/dev/mmcblk1"
+else 
+    exit:1
 
 # Debug output
 DEBUG="debug"
 debugMessage "____ Platform: $PLATFORM ____"
 debugMessage "____ Partition: $PARTITION ____"
 debugMessage "____ Memory Card: $CARD ____"
+debugMessage "____ Memory Card: $TARGET ____"
+
 
 # Set window/text color
 export NEWT_COLORS='
@@ -52,7 +60,11 @@ fullscale=,white
 # Main Function of this script 
 led off
 led manual all 2 &
-echo "debug"
+
+pv -n /opt/additionalFiles/emmc.img | dd of=/dev/mmcblk0 bs=128M conv=notrunc,>
+echo "please reboot or powerdown the system now"
+
+
 mkdir -p /media/new
 mount /dev/mmcblk0p1 /media/new
 cp -r /boot/openhd/* /media/new/openhd/
