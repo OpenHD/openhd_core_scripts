@@ -76,7 +76,7 @@ if [ -f /opt/additionalFiles/emmc.img ]; then
     cp -r /boot/openhd/* /media/new/openhd/
     debugMessage "Copied openhd config files!"
     led off
-    whiptail --msgbox "Please reboot your system now" 10 40
+    reboot
 else
     debugMessage "Failed: emmc.img not found"
     led off
