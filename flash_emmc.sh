@@ -64,7 +64,7 @@ fullscale=,white
 
 # Main Function of this script 
 led off
-(led manual all 2 > /dev/null 2>&1 ) &
+(led flashing blueANDgreen 2 > /dev/null 2>&1 ) &
 
 if [ -f /opt/additionalFiles/emmc.img ]; then
     FILESIZE=$(stat -c "%s" /opt/additionalFiles/emmc.img)
