@@ -64,15 +64,21 @@ led off
 led manual all 2 &
 if [ -d /opt/additionalFiles/emmc.img ]; then
     (pv -n /opt/additionalFiles/emmc.img | dd of=$TARGET bs=128M conv=notrunc,noerror) 2>&1 | whiptail --gauge "Flashing OpenHD to EMMC, please wait..." 10 70 0
+    if [ ! -d /media/new ]; then
+        mkdir -p /media/new
+    else
+        /media/new
+    fi
+        mount "$TARGET"p1 /media/new
+        mkdir -p /media/new/openhd/
+        cp -r /boot/openhd/* /media/new/openhd/
+        whiptail --msgbox "Please reboot your system now" 10 40
+        led off
+    fi
 else
     echo "failed"
     debugMessage "failed"
     led off
     led on
 fi
-mkdir -p /media/new
-mount "$TARGET"p1 /media/new
-cp -r /boot/openhd/* /media/new/openhd/
-whiptail --msgbox "Please reboot your system now" 10 40
-led off
 exit 0
