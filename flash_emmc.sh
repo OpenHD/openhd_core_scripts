@@ -20,13 +20,13 @@ led() {
 }
 
 # Detect platform
-if [ -d /sys/class/leds/openhd-x20dev ]; then
+if [ -f /sys/class/leds/openhd-x20dev ]; then
     PLATFORM="x20"
     debugMessage "Platform: X20"
-elif [ -d /sys/class/leds/user-led/brightness ]; then
+elif [ -f /sys/class/leds/user-led/brightness ]; then
     PLATFORM="cm3"
     debugMessage "Platform: CM3"
-elif [ -d /sys/class/leds/board-led ]; then
+elif [ -f /sys/class/leds/board-led ]; then
     PLATFORM="zero3"
     debugMessage "Platform: Zero3"
 else
