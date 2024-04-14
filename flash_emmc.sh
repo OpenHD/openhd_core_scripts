@@ -6,6 +6,7 @@
 
 debugMessage() {
     if [ "$DEBUG" == "debug" ]; then
+        [ -d /boot/openhd ] || mkdir -p /boot/openhd && touch /boot/openhd/flash.log
         echo "$(date '+%Y-%m-%d %H:%M:%S') $1" 
         echo "$(date '+%Y-%m-%d %H:%M:%S') $1" >> /boot/openhd/flash.log
     fi
