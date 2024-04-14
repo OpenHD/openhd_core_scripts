@@ -65,6 +65,7 @@ led manual all 2 &
 if [ -d /opt/additionalFiles/emmc.img ]; then
     (pv -n /opt/additionalFiles/emmc.img | dd of=$TARGET bs=128M conv=notrunc,noerror) 2>&1 | whiptail --gauge "Flashing OpenHD to EMMC, please wait..." 10 70 0
 else
+    echo "failed"
     debugMessage "failed"
     led off
     led on
