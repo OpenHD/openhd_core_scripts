@@ -30,8 +30,7 @@ CARD=$(df -h / | awk 'NR==2 {gsub(/[0-9]+p/, "", $1); print $1}')
 
 # Debug output
 DEBUG="debug"
-debugMessage "____Platform____"
-debugMessage "____"$PLATFORM"____"
+debugMessage "____ Platform : $PLATFORM ____"
 debugMessage "____Partition____"
 debugMessage "____"$PARTITION"____"
 debugMessage "____Memory Card____"
