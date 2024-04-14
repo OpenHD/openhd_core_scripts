@@ -60,9 +60,10 @@ fullscale=,white
 # Main Function of this script 
 led off
 led manual all 2 &
-
+(pv -n /opt/additionalFiles/emmc.img | dd of=$TARGET bs=128M conv=notrunc,noerror) 2>&1 | whiptail --gauge "Flashing OpenHD to EMMC, please wait..." 10 70 0
 mkdir -p /media/new
 mount "$TARGET"p1 /media/new
 cp -r /boot/openhd/* /media/new/openhd/
 whiptail --msgbox "Please reboot your system now" 10 40
 led off
+exit 0
