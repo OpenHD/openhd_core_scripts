@@ -67,7 +67,7 @@ fullscale=,white
 led off
 led manual all 2 &
 
-if [ -e /opt/additionalFiles/emmc.img ]; then
+if [ -f /opt/additionalFiles/emmc.img ]; then
     (pv -n /opt/additionalFiles/emmc.img | dd of="$TARGET" bs=128M conv=notrunc,noerror) 2>&1 | whiptail --gauge "Flashing OpenHD to EMMC, please wait..." 10 70 0
     mkdir -p /media/new
     mount "$TARGET"p1 /media/new
