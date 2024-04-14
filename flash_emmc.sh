@@ -67,12 +67,16 @@ led off
 (led manual all 2 > /dev/null 2>&1 ) &
 
 if [ -f /opt/additionalFiles/emmc.img ]; then
+    FILESIZE=$(stat -c "%s" /opt/additionalFiles/emmc.img)
+    debugMessage "$FILESIZE image is being flashed!"
     (pv -n /opt/additionalFiles/emmc.img | dd of="$TARGET" bs=128M conv=notrunc,noerror) 2>&1 | whiptail --gauge "Flashing OpenHD to EMMC, please wait..." 10 70 0
+    debugMessage "Flash completed!"
     mkdir -p /media/new
     mount "$TARGET"p1 /media/new
     cp -r /boot/openhd/* /media/new/openhd/
-    whiptail --msgbox "Please reboot your system now" 10 40
+    debugMessage "Copied openhd config files!"
     led off
+    whiptail --msgbox "Please reboot your system now" 10 40
 else
     debugMessage "Failed: emmc.img not found"
     led off
