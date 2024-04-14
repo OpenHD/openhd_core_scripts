@@ -13,7 +13,7 @@ debugMessage() {
 }
 
 led() {
-echo "debug"
+led_sys.sh $1
 }
 
 # Detect platform
