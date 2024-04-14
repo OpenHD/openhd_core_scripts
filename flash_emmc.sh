@@ -23,10 +23,10 @@ elif [ ! -d /sys/class/leds//board-led ]; then
 fi
 
 # Detect which partition is currently used
-Partition= df -h / | awk 'NR==2 {print $1}'
+PARTITION=$(df -h / | awk 'NR==2 {print $1}')
 
 
 # Main Function of this script 
 echo $PLATFORM
 echo "_______"
-echo $Partition
+echo $PARTITION
