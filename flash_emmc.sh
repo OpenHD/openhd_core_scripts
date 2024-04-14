@@ -61,8 +61,8 @@ fullscale=,white
 led off
 led manual all 2 &
 
-pv -n /opt/additionalFiles/emmc.img | dd of=/dev/mmcblk0 bs=128M conv=notrunc,>
-echo "please reboot or powerdown the system now"
+# pv -n /opt/additionalFiles/emmc.img | dd of=/dev/mmcblk0 bs=128M conv=notrunc,>
+# echo "please reboot or powerdown the system now"
 
 
 mkdir -p /media/new
