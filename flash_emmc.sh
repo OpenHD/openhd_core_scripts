@@ -75,9 +75,9 @@ if [ -f /opt/additionalFiles/emmc.img ]; then
     led off
 else
     debugMessage "Failed: emmc.img not found"
-    echo "Failed: emmc.img not found"
     led off
     led on
+    debugMessage "LED on"
     exit 1
 fi
 
