@@ -15,7 +15,7 @@ debugMessage() {
 }
 
 led() {
-    led_sys.sh "$@" >/dev/null 2>&1
+( led_sys.sh "$@" > /dev/null 2>&1 ) &
 }
 
 # Detect platform
