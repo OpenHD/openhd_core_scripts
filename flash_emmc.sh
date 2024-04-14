@@ -22,5 +22,11 @@ elif [ ! -d /sys/class/leds//board-led ]; then
     debugMessage "Platform: zero3"
 fi
 
+# Detect which partition is currently used
+Partition= df -h / | awk 'NR==2 {print $1}'
+
+
 # Main Function of this script 
 echo $PLATFORM
+ehco "_______"
+echo $Partition
