@@ -28,8 +28,8 @@ jobs:
           sudo gem install fpm
 
           VERSION="0.4-$(date -d '+1 hour' +'%m-%d-%Y--%H-%M-%S')"
-          fpm -a armhf -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb --before-install packaging/before-install.sh --after-install packaging/after-install.sh
-          fpm -a arm64 -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb --before-install packaging/before-install.sh --after-install packaging/after-install.sh
+          fpm -a armhf -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb --before-install packaging/before-install.sh --after-install packaging/after-install.sh  -d "bc"
+          fpm -a arm64 -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb --before-install packaging/before-install.sh --after-install packaging/after-install.sh  -d "bc"
           
           rm -Rf openhd_sys_utils/usr/local/bin/x20/
           mkdir -p openhd_sys_utils/etc/xdg/autostart/
@@ -46,7 +46,7 @@ jobs:
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/steamdeck.desktop
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/nm-tray-autostart.desktop
           chmod a+x  openhd_sys_utils/etc/xdg/autostart/QOpenHD2.desktop
-          fpm -a x86_64 -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb
+          fpm -a x86_64 -s dir -t deb -n openhd_sys_utils -v "$VERSION" -C openhd_sys_utils -p openhd_sys_utils_VERSION_ARCH.deb -d "bc"
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
