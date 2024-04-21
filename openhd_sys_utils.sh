@@ -50,6 +50,9 @@ if [ -f "/boot/openhd/rock-rk3566.txt" ] || [ -f "/boot/openhd/openhd/rock-rk356
     mv /home/openhd/Videos_emmc/* /home/openhd/Videos
   fi
   echo "run initRock"
+  if  [ -e /config/write_logs.txt ]; then
+  sudo journalctl > /config/logs.txt
+  fi
   sudo bash /usr/local/bin/initRock.sh > /boot/debug.txt
   if [ -f "/boot/openhd/clearEMMC.txt" ] || [ -f "/home/openhd/Videos/clearEMMC.txt" ] ; then
     (pv -n /dev/zero | dd of=/dev/mmcblk0 bs=128M conv=notrunc,noerror) 2>&1 | whiptail --gauge "Flashing OpenHD to EMMC, please wait... (if this fails, please manually reboot)" 10 70 0
