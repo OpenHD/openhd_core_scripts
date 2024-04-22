@@ -32,14 +32,17 @@ if [ -d /sys/class/leds/openhd-x20dev ]; then
 elif grep -q "Raspberry Pi" /proc/cpuinfo; then
     PLATFORM="pi"
     debugMessage "Platform: RPI"
-
     if [ ! -d /sys/class/leds/PWR ]; then
         COLOR="green"
         debugMessage "Only One LED"
     fi
 elif [ ! -d /sys/class/leds/user-led/brightness ]; then
     PLATFORM="cm3"
-    debugMessage "Only One LED"
+    debugMessage "Platform: CM3"
+
+elif [ ! -d /sys/class/leds/board-led/brightness ]; then
+    PLATFORM="zero3w"
+    debugMessage "Platform: Zero3w"
 fi
 
 # Main functions
@@ -113,6 +116,8 @@ LED_ON() {
             echo 1 > /sys/class/leds/pi-led-green/brightness
             echo 1 > /sys/class/leds/pwr-led-red/brightness
         fi
+    elif [ "$PLATFORM" == "zero3w" ]; then
+            echo 1 > /sys/class/leds/board-led/brightness
     fi
 }
 
@@ -177,6 +182,8 @@ LED_OFF() {
             echo 0 > /sys/class/leds/pi-led-green/brightness
             echo 0 > /sys/class/leds/pwr-led-red/brightness
         fi
+    elif [ "$PLATFORM" == "zero3w" ]; then
+            echo 0 > /sys/class/leds/board-led/brightness
     fi
 }
 
