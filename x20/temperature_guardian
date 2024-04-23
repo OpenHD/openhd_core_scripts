@@ -1,6 +1,7 @@
 #!/bin/bash
 
-MaxTempWarn=75000
+# In case openhd thermal protection doesn't work or isn't enough
+MaxTempWarn=77000
 MaxTempShutdown=80000
 
 while true; do
