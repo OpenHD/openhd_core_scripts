@@ -24,10 +24,10 @@ if [ -f "/boot/openhd/rock-rk3566.txt" ] || [ -f "/boot/openhd/openhd/rock-rk356
 execute_FPVueVideoDecode2
 fi
 
-if [ -f "/usr/local/share/openhd_platform/rock/rock5b" ]; then
+if [ -e "/usr/local/share/openhd_platform/rock/rock5b" ]; then
 execute_FPVueVideoDecode2
 fi
 
-if [ -f "/usr/local/share/openhd_platform/rock/rock5a" ]; then
+if [ -e "/usr/local/share/openhd_platform/rock/rock5a" ]; then
 execute_FPVueVideoDecode2
 fi
