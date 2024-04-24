@@ -43,6 +43,9 @@ elif [ ! -d /sys/class/leds/user-led/brightness ]; then
 elif [ ! -d /sys/class/leds/board-led/brightness ]; then
     PLATFORM="zero3w"
     debugMessage "Platform: Zero3w"
+elif [ ! -d /sys/class/leds/usr-led2/brightness ]; then
+    PLATFORM="rock5"
+    debugMessage "Platform: Rock5"
 fi
 
 # Main functions
@@ -118,6 +121,8 @@ LED_ON() {
         fi
     elif [ "$PLATFORM" == "zero3w" ]; then
             echo 1 > /sys/class/leds/board-led/brightness
+    elif [ "$PLATFORM" == "rock5" ]; then
+            echo 1 > /sys/class/leds/usr-led2/brightness
     fi
 }
 
@@ -184,6 +189,8 @@ LED_OFF() {
         fi
     elif [ "$PLATFORM" == "zero3w" ]; then
             echo 0 > /sys/class/leds/board-led/brightness
+    elif [ "$PLATFORM" == "rock5" ]; then
+            echo 0 > /sys/class/leds/usr-led2/brightness
     fi
 }
 

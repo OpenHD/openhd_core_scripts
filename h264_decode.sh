@@ -32,9 +32,9 @@ execute_FPVueVideoDecode2
 fi
 
 if [ -f "/boot/openhd/rock-5b.txt" ]; then
-execute_kmsDecodeMPP 54 false
+execute_FPVueVideoDecode2
 fi
 
 if [ -f "/boot/openhd/rock-5a.txt" ]; then
-execute_kmsDecodeMPP 68 false
+execute_FPVueVideoDecode2
 fi
