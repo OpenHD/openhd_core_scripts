@@ -36,7 +36,7 @@ elif grep -q "Raspberry Pi" /proc/cpuinfo; then
         COLOR="green"
         debugMessage "Only One LED"
     fi
-elif [ ! -d /sys/class/leds/usr-led2/brightness ]; then
+elif [ ! -d /sys/class/leds/user-led2/brightness ]; then
     PLATFORM="rock5"
     debugMessage "Platform: Rock5"
 elif [ ! -d /sys/class/leds/user-led/brightness ]; then
@@ -122,7 +122,7 @@ LED_ON() {
     elif [ "$PLATFORM" == "zero3w" ]; then
             echo 1 > /sys/class/leds/board-led/brightness
     elif [ "$PLATFORM" == "rock5" ]; then
-            echo 1 > /sys/class/leds/usr-led2/brightness
+            echo 1 > /sys/class/leds/user-led2/brightness
     fi
 }
 
@@ -190,7 +190,7 @@ LED_OFF() {
     elif [ "$PLATFORM" == "zero3w" ]; then
             echo 0 > /sys/class/leds/board-led/brightness
     elif [ "$PLATFORM" == "rock5" ]; then
-            echo 0 > /sys/class/leds/usr-led2/brightness
+            echo 0 > /sys/class/leds/user-led2/brightness
     fi
 }
 
