@@ -6,6 +6,8 @@ mkdir -p /usr/local/share/openhd/platform/rock
 
 if [[ -f "/boot/openhd/rock-5a.txt" ]]; then
     echo "Running on a rock5 A"
+    sudo systemctl enable ssh
+    sudo systemctl start ssh
     mkdir -p /usr/local/share/openhd/platform/rock/rock5a
     config_file=$(find /boot/openhd/ -type f -name 'IMX*')
     
@@ -28,6 +30,8 @@ fi
 if [[ -f "/boot/openhd/rock-5b.txt" ]]; then
     echo "Running on a rock5 B"
     mkdir -p /usr/local/share/openhd/platform/rock/rock5b
+    sudo systemctl enable ssh
+    sudo systemctl start ssh
     config_file=$(find /boot/openhd/ -type f -name 'IMX*')
     
     if [[ -n "$config_file" ]]; then
