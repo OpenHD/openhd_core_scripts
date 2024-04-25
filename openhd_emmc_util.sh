@@ -28,10 +28,6 @@ debugMessage() {
     fi
 }
 
-led() {
- led_sys.sh "$@"
-}
-
 if [ "$BOARD" == "Radxa CM3 RPI CM4 IO" ]; then
     echo "CM3"
     EMMC=/dev/mmcblk0
@@ -70,12 +66,12 @@ flash_emmc() {
     mount "$EMMC"p1 /media/new
     cp -r /boot/openhd/* /media/new/openhd/
     debugMessage "Copied openhd config files!"
-    led off
+    ./usr/local/bin/led_sys.sh off
     sudo dd if=/dev/zero of=$SDCARD bs=512 count=1 seek=1
     reboot
 else
-    debugMessage "Failed: emmc.img not found"
-    led off
+    debugMessage "Failed emmc.img not found"
+    ./usr/local/bin/led_sys.sh off
     debugMessage "LED off"
     exit 1
 fi
@@ -85,16 +81,16 @@ fi
 echo "EMMC: $EMMC"
 echo "SDCARD: $SDCARD"
 
-led off
+./usr/local/bin/led_sys.sh off
 if [ "$COMMAND" == "clear" ]; then
-    (led flashing blueANDgreen 2 > /dev/null 2>&1 ) &
+    ./usr/local/bin/led_sys.sh flashing blueANDgreen 2 &
     sudo dd if=/dev/zero of=$EMMC bs=512 count=1 seek=1
-    led off
+    ./usr/local/bin/led_sys.sh off
 
 elif [ "$COMMAND" == "flash" ]; then
-    (led flashing blueANDgreen 2 > /dev/null 2>&1 ) &
+    ./usr/local/bin/led_sys.sh flashing blueANDgreen 2 &
     flash_emmc
-    led off
+    ./usr/local/bin/led_sys.sh off
 
 else
     echo "Unsupported command"
