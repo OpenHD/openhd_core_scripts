@@ -55,7 +55,7 @@ if [ -f "/boot/openhd/rock-rk3566.txt" ] || [ -f "/boot/openhd/openhd/rock-rk356
   fi
   sudo bash /usr/local/bin/initRock.sh > /boot/debug.txt
   if [ -f "/boot/openhd/clearEMMC.txt" ] || [ -f "/home/openhd/Videos/clearEMMC.txt" ] ; then
-    sudo dd if=/dev/zero of=/dev/mmcblk1 bs=512 count=1 seek=1
+    bash /usr/local/bin/openhd_emmc_util clear
     whiptail --msgbox "EMMC cleared Please reboot your system now" 10 40
   fi
 fi
