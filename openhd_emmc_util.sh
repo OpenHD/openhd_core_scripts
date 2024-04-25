@@ -52,6 +52,10 @@ elif [ "$BOARD" == "CM5 RPI CM4 IO" ]; then
     echo "CM5"
     EMMC=/dev/mmcblk4
     SDCARD=/dev/mmcblk2
+elif [ "$BOARD" == "OpenHD X20 Dev" ]; then
+    echo "X20"
+    EMMC=/dev/mmcblk1
+    SDCARD=/dev/mmcblk0
 else
     echo "Unsupported board: $BOARD"
 fi
