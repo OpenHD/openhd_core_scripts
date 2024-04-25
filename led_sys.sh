@@ -36,14 +36,14 @@ elif grep -q "Raspberry Pi" /proc/cpuinfo; then
         COLOR="green"
         debugMessage "Only One LED"
     fi
-elif [ ! -d /sys/class/leds/user-led2/brightness ]; then
+elif [ -d /sys/class/leds/user-led2/brightness ]; then
     PLATFORM="rock5"
     debugMessage "Platform: Rock5"
-elif [ ! -d /sys/class/leds/user-led/brightness ]; then
+elif [ -d /sys/class/leds/user-led/brightness ]; then
     PLATFORM="cm3"
     debugMessage "Platform: CM3"
 
-elif [ ! -d /sys/class/leds/board-led/brightness ]; then
+elif [ -d /sys/class/leds/board-led/brightness ]; then
     PLATFORM="zero3w"
     debugMessage "Platform: Zero3w"
 fi
