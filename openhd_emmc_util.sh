@@ -67,7 +67,6 @@ flash_emmc() {
     cp -r /boot/openhd/* /media/new/openhd/
     debugMessage "Copied openhd config files!"
     ./usr/local/bin/led_sys.sh off
-    sudo dd if=/dev/zero of=$SDCARD bs=512 count=1 seek=1
     reboot
 else
     debugMessage "Failed emmc.img not found"
