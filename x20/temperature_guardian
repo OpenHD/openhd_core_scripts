@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # In case openhd thermal protection doesn't work or isn't enough
-MaxTempWarn=77000
-MaxTempShutdown=80000
+MaxTempWarn=80000
+MaxTempShutdown=82000
 
 while true; do
     temp=`cat /sys/class/hwmon/hwmon0/temp1_input`
