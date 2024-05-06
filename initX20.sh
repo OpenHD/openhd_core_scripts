@@ -14,4 +14,4 @@ modprobe 88XXau_ohd
 modprobe HdZero
 gst-launch-1.0 -ve v4l2src device=/dev/video0 num-buffers=72 ! video/x-raw,width=1280,height=720,framerate=60/1,format=NV12 ! cedar_h264enc keyint=12 bitrate=16000 !  video/x-h264 ! h264parse ! matroskamux ! filesink location="/home/openhd/$fname" >& /home/openhd/GStreamerLog.txt
 
-
+journalctl > /boot/log_$(date +"%Y-%m-%d_%H-%M-%S").txt
