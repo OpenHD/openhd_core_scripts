@@ -21,6 +21,17 @@ if [ -f "/boot/openhd/openhd/x86.txt" ]; then
  sudo mv /boot/openhd/openhd/* /boot/openhd
 fi
 
+if [[ "$(lsb_release -cs)" == "noble" ]]; then 
+  if [ -f "/opt/setup" ]; then
+  depmod -a
+  rm /opt/setup
+  fi
+fi
+
+if [ -f "/boot/openhd/openhd/x86.txt" ]; then
+ sudo mv /boot/openhd/openhd/* /boot/openhd
+fi
+
 if [ -f "/boot/openhd/x86.txt" ]; then
  sudo bash /usr/local/bin/initX86.sh
  touch /usr/local/share/executed
