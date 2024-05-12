@@ -3,7 +3,8 @@
 TYPE=$1
 COLOR=$2
 MODIFIER=$3
-DEBUG=$4
+DELAY=$4
+DEBUG=$5
 
 if [ "$TYPE" == "" ]; then 
     echo "OpenHD LED Control"
@@ -12,7 +13,7 @@ if [ "$TYPE" == "" ]; then
     echo "led TYPE COLOR DELAY DEBUG"
     echo "available types:"
     echo "________________"
-    echo "on|off|manual|warning|error"
+    echo "on|off|manual|warning|error|flashing"
 fi
 
 # Kill all previous instances
@@ -25,27 +26,27 @@ debugMessage() {
 }
 
 # Detect platform and LED-type
-if [ -d /sys/class/leds/openhd-x20dev ]; then
-    PLATFORM="x20"
-    debugMessage "Platform: X20"
-
-elif grep -q "Raspberry Pi" /proc/cpuinfo; then
+if grep -q "Raspberry Pi" /proc/cpuinfo; then
     PLATFORM="pi"
     debugMessage "Platform: RPI"
-    if [ ! -d /sys/class/leds/PWR ]; then
-        COLOR="green"
-        debugMessage "Only One LED"
+    if [ -d /sys/class/leds/PWR ]; then
+        PLATFORM="pi"
+        debugMessage "Platform: RPI"
     fi
-elif [ -d /sys/class/leds/user-led2/brightness ]; then
+elif [ -d /sys/class/leds/openhd-x20dev ]; then
+    PLATFORM="x20"
+    debugMessage "Platform: X20"
+elif [ -f /sys/class/leds/user-led2/brightness ]; then
     PLATFORM="rock5"
     debugMessage "Platform: Rock5"
-elif [ -d /sys/class/leds/user-led/brightness ]; then
+elif [ -f /sys/class/leds/pi-led-green/brightness ]; then
     PLATFORM="cm3"
     debugMessage "Platform: CM3"
-
-elif [ -d /sys/class/leds/board-led/brightness ]; then
+elif [ -f /sys/class/leds/board-led/brightness ]; then
     PLATFORM="zero3w"
     debugMessage "Platform: Zero3w"
+else
+    echo "Platform not found"
 fi
 
 # Main functions
@@ -120,9 +121,9 @@ LED_ON() {
             echo 1 > /sys/class/leds/pwr-led-red/brightness
         fi
     elif [ "$PLATFORM" == "zero3w" ]; then
-            echo 1 > /sys/class/leds/board-led/brightness
+        echo 1 > /sys/class/leds/board-led/brightness
     elif [ "$PLATFORM" == "rock5" ]; then
-            echo 1 > /sys/class/leds/user-led2/brightness
+        echo 1 > /sys/class/leds/user-led2/brightness
     fi
 }
 
@@ -188,9 +189,9 @@ LED_OFF() {
             echo 0 > /sys/class/leds/pwr-led-red/brightness
         fi
     elif [ "$PLATFORM" == "zero3w" ]; then
-            echo 0 > /sys/class/leds/board-led/brightness
+        echo 0 > /sys/class/leds/board-led/brightness
     elif [ "$PLATFORM" == "rock5" ]; then
-            echo 0 > /sys/class/leds/user-led2/brightness
+        echo 0 > /sys/class/leds/user-led2/brightness
     fi
 }
 
@@ -205,39 +206,39 @@ BLINK_LED() {
 BLINK_LED_ASYNC() {
     while true; do
        LED_ON
-       sleep $(echo "$DELAY1 * 0.01" | bc)
+       sleep $(echo "$DELAY * 0.01" | bc)
        LED_OFF
-       sleep $(echo "$DELAY2 * 0.01" | bc)
+       sleep $(echo "$DELAY * 0.01" | bc)
     done
 }
 BLINK_LED_ASYNC_MULTI() {
     while true; do
        COLOR=$COLOR1
        LED_ON
-       sleep $(echo "$DELAY1 * 0.01" | bc)
+       sleep $(echo "$DELAY * 0.01" | bc)
        LED_OFF
-       sleep $(echo "$DELAY2 * 0.01" | bc)
+       sleep $(echo "$DELAY * 0.01" | bc)
        COLOR=$COLOR2
        LED_ON
-       sleep $(echo "$DELAY1 * 0.01" | bc)
+       sleep $(echo "$DELAY * 0.01" | bc)
        LED_OFF
-       sleep $(echo "$DELAY2 * 0.01" | bc)
+       sleep $(echo "$DELAY * 0.01" | bc)
     done
 }
 BLINK_LED_ASYNC_MULTI_2() {
     while true; do
        COLOR=$COLOR1
        LED_ON
-       sleep $(echo "$DELAY1 * 0.01" | bc)
+       sleep $(echo "$DELAY * 0.01" | bc)
        COLOR=$COLOR2
        LED_ON
-       sleep $(echo "$DELAY1 * 0.01" | bc)
+       sleep $(echo "$DELAY * 0.01" | bc)
        COLOR=$COLOR1
        LED_OFF
-       sleep $(echo "$DELAY2 * 0.01" | bc)
+       sleep $(echo "$DELAY * 0.01" | bc)
        COLOR=$COLOR2
        LED_OFF
-       sleep $(echo "$DELAY2 * 0.01" | bc)
+       sleep $(echo "$DELAY * 0.01" | bc)
     done
 }
 BLINK_LED_ASYNC_MULTI_SWITCHING() {
@@ -246,12 +247,12 @@ BLINK_LED_ASYNC_MULTI_SWITCHING() {
        LED_ON
        COLOR=$COLOR2
        LED_OFF
-       sleep $(echo "$DELAY1 * 0.01" | bc)
+       sleep $(echo "$DELAY * 0.01" | bc)
        COLOR=$COLOR2
        LED_ON
        COLOR=$COLOR1
        LED_OFF
-       sleep $(echo "$DELAY2 * 0.01" | bc)
+       sleep $(echo "$DELAY * 0.01" | bc)
     done
 }
 
@@ -271,8 +272,7 @@ elif [ "$TYPE" == "warning" ]; then
         echo "Missing value for Warning mode."
     else
         COLOR="green"
-        DELAY1="50"
-        DELAY2="200"
+        DELAY="50"
         BLINK_LED_ASYNC
         debugMessage "LED Warning $MODIFIER" 
     fi
@@ -280,18 +280,16 @@ elif [ "$TYPE" == "error" ]; then
     if [ -z "$MODIFIER" ]; then
         echo "Missing value for Error mode."
     else
-        DELAY1="50"
-        DELAY2="100"
+        DELAY="50"
         COLOR1="green"
         COLOR2="red"
         BLINK_LED_ASYNC_MULTI_2
         debugMessage "LED Error $MODIFIER" 
     fi
 elif [ "$TYPE" == "flashing" ]; then 
-        DELAY1="1"
-        DELAY2="1"
-        COLOR1="green"
-        COLOR2="blue"
-        BLINK_LED_ASYNC_MULTI_SWITCHING
-        debugMessage "LED $MODIFIER" 
+    DELAY="1"
+    COLOR1="green"
+    COLOR2="blue"
+    BLINK_LED_ASYNC_MULTI_SWITCHING
+    debugMessage "LED flashing" 
 fi
