@@ -13,7 +13,7 @@ if [ "$TYPE" == "" ]; then
     echo "led TYPE COLOR DELAY DEBUG"
     echo "available types:"
     echo "________________"
-    echo "on|off|manual|warning|error|flashing"
+    echo "on|off|toggle|manual|warning|error|flashing"
 fi
 
 # Kill all previous instances
@@ -35,15 +35,19 @@ if grep -q "Raspberry Pi" /proc/cpuinfo; then
     fi
 elif [ -d /sys/class/leds/openhd-x20dev ]; then
     PLATFORM="x20"
+    FILE="/sys/class/leds/openhd-x20dev"
     debugMessage "Platform: X20"
 elif [ -f /sys/class/leds/user-led2/brightness ]; then
     PLATFORM="rock5"
+    FILE="/sys/class/leds/user-led2/brightness"
     debugMessage "Platform: Rock5"
 elif [ -f /sys/class/leds/pi-led-green/brightness ]; then
     PLATFORM="cm3"
+    FILE="/sys/class/leds/pi-led-green/brightness"
     debugMessage "Platform: CM3"
 elif [ -f /sys/class/leds/board-led/brightness ]; then
     PLATFORM="zero3w"
+    FILE="/sys/class/leds/board-led/brightness"
     debugMessage "Platform: Zero3w"
 else
     echo "Platform not found"
@@ -261,6 +265,12 @@ if [ "$TYPE" == "on" ]; then
     LED_ON
 elif [ "$TYPE" == "off" ]; then 
     LED_OFF
+elif [ "$TYPE" == "toggle" ]; then 
+    if [[ $(cat /sys/class/leds/pi-led-green/brightness) == "0" ]]; then
+    LED_ON
+    else
+    LED_OFF
+    fi
 elif [ "$TYPE" == "manual" ]; then 
     if [ -z "$MODIFIER" ]; then
         echo "Missing delay value for MANUAL mode."
