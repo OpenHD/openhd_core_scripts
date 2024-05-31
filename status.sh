@@ -4,8 +4,8 @@ lookForWarning() {
     if [ -d "/tmp/openhd_status" ]; then
         for dir in /tmp/openhd_status/*/; do
             if [ -d "$dir" ] && [ -f "$dir/warning" ]; then
-                echo "Directory: $(basename "$dir")"
-                cat "$dir/warning"
+                WARNING=$(cat "$dir/warning")
+                echo "$(basename "$dir")":"$WARNING"
             fi
         done
     else
