@@ -3,7 +3,8 @@
 lookForWarning() {
     if [ -d "/tmp/openhd_status" ]; then
         for dir in /tmp/openhd_status/*/; do
-            if [ -d "$dir" ] && [ "$(basename "$dir")" == "openhd" ] && [ -f "$dir/warning" ]; then
+            if [ -d "$dir" ] && [ -f "$dir/warning" ]; then
+                echo "Directory: $(basename "$dir")"
                 cat "$dir/warning"
             fi
         done
