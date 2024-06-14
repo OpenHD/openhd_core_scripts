@@ -1,5 +1,9 @@
+#!/bin/bash
 
-CAM=0x22
+/usr/local/bin/x20/runcam_v2/get_cam_i2c.sh
+CAM=$?
+echo "Using cam $CAM"
+
 BUS=0
 
 if [ $1 -eq 3 ]; then

@@ -1,5 +1,9 @@
 #!/bin/bash
-sleep 3
+if [ $# -eq 0 ]
+  then
+    sleep 3
+fi
+
 v2=`i2cdetect -y 0 |grep 20 | grep 24`
 v2=`i2cdetect -y 0 |grep 20 | grep 22`
 v1=`i2cdetect -y 0 |grep 20 | grep 21`

@@ -1,5 +1,7 @@
+#!/bin/bash
 
-CAM=0x22
+/usr/local/bin/x20/runcam_v2/get_cam_i2c.sh
+CAM=$?
 BUS=0
 
 # RUNCAM_Read_Write(camera_device, 0x0001b8, 0x020b007b); # Manual
