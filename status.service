@@ -1,0 +1,9 @@
+[Unit]
+Description=Provide Status Messages via LED
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /usr/local/bin/openhd_status.sh
+
+[Install]
+WantedBy=multi-user.target
