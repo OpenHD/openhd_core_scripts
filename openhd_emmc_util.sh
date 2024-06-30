@@ -34,8 +34,8 @@ if [ "$BOARD" == "Radxa CM3 RPI CM4 IO" ]; then
     SDCARD=/dev/mmcblk1
 elif [ "$BOARD" == "Radxa ZERO 3" ]; then
     echo "Zero3"
-    EMMC=/dev/mmcblk1
-    SDCARD=/dev/mmcblk0
+    EMMC=/dev/mmcblk0
+    SDCARD=/dev/mmcblk1
 elif [ "$BOARD" == "Radxa ROCK 5B" ]; then
     echo "Rock5B"
     EMMC=/dev/mmcblk3
