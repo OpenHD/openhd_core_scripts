@@ -66,11 +66,11 @@ flash_emmc() {
     mount "$EMMC"p1 /media/new
     cp -r /boot/openhd/* /media/new/openhd/
     debugMessage "Copied openhd config files!"
-    ./usr/local/bin/led_sys.sh off
+    /usr/local/bin/led_sys.sh off
     reboot
 else
     debugMessage "Failed emmc.img not found"
-    ./usr/local/bin/led_sys.sh off
+    /usr/local/bin/led_sys.sh off
     debugMessage "LED off"
     exit 1
 fi
@@ -80,16 +80,16 @@ fi
 echo "EMMC: $EMMC"
 echo "SDCARD: $SDCARD"
 
-./usr/local/bin/led_sys.sh off
+/usr/local/bin/led_sys.sh off
 if [ "$COMMAND" == "clear" ]; then
-    ./usr/local/bin/led_sys.sh flashing blueANDgreen 2 &
+    /usr/local/bin/led_sys.sh flashing blueANDgreen 2 &
     sudo dd if=/dev/zero of=$EMMC bs=512 count=1 seek=1
-    ./usr/local/bin/led_sys.sh off
+    /usr/local/bin/led_sys.sh off
 
 elif [ "$COMMAND" == "flash" ]; then
-    ./usr/local/bin/led_sys.sh flashing blueANDgreen 2 &
+    /usr/local/bin/led_sys.sh flashing blueANDgreen 2 &
     flash_emmc
-    ./usr/local/bin/led_sys.sh off
+    /usr/local/bin/led_sys.sh off
 
 else
     echo "Unsupported command"
