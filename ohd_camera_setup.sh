@@ -34,24 +34,30 @@ case $config_file_content in
             62) cam_type="X_CAM_TYPE_RPI_V4L2_VEYE_CSSC132"; cam_link="kms"; cam_ident="cssc132-overlay"; cma=false ;;
             63) cam_type="X_CAM_TYPE_RPI_V4L2_VEYE_MVCAM"; cam_link="kms"; cam_ident="veye_mvcam-overlay"; cma=false ;;
             # X20
-            70) cam_type="X_CAM_TYPE_X20_RUNCAM_NANO";;
-            71) cam_type="X_CAM_TYPE_X20_RUNCAM_90";;
-            72) cam_type="X_CAM_TYPE_X20_OHD_Jaguar";;
+            70) cam_type="X_CAM_TYPE_X20_HDZERO_GENERIC";;
+            71) cam_type="X_CAM_TYPE_X20_HDZERO_RUNCAM_V1";;
+            72) cam_type="X_CAM_TYPE_X20_HDZERO_RUNCAM_V2";;
+            73) cam_type="X_CAM_TYPE_X20_HDZERO_RUNCAM_V3";;
+            74) cam_type="X_CAM_TYPE_X20_HDZERO_RUNCAM_NANO_90";;
+            75) cam_type="X_CAM_TYPE_X20_OHD_Jaguar";;
             # Rockchip
-            80) cam_type="X_CAM_TYPE_ROCK_5_HDMI_IN"; cam_ident="" ;;
+            80) cam_type="X_CAM_TYPE_ROCK_5_HDMI_IN"; cam_ident="rock-5b-hdmi1-8k" ;;
             81) cam_type="X_CAM_TYPE_ROCK_5_OV5647"; cam_ident="rpi-camera-v1_3" ;;
             82) cam_type="X_CAM_TYPE_ROCK_5_IMX219"; cam_ident="rpi-camera-v2" ;;
             83) cam_type="X_CAM_TYPE_ROCK_5_IMX708"; cam_ident="imx708" ;;
             84) cam_type="X_CAM_TYPE_ROCK_5_IMX462"; cam_ident="arducam-pivariety" ;;
-            85) cam_type="X_CAM_TYPE_ROCK_5_IMX415"; cam_ident="radxa-camera-4k" ;;
-            86) cam_type="X_CAM_TYPE_ROCK_5_OHD_Jaguar"; cam_ident="ohd-jaguar" ;;
-            90) cam_type="X_CAM_TYPE_ROCK_3_HDMI_IN"; cam_ident="" ;;
+            85) cam_type="X_CAM_TYPE_ROCK_5_IMX415"; cam_ident="imx415" ;;
+            86) cam_type="X_CAM_TYPE_ROCK_5_IMX477"; cam_ident="arducam-pivariety" ;;
+            87) cam_type="X_CAM_TYPE_ROCK_5_IMX519"; cam_ident="arducam-pivariety" ;;
+            88) cam_type="X_CAM_TYPE_ROCK_5_OHD_Jaguar"; cam_ident="ohd-jaguar" ;;
+            90) cam_type="X_CAM_TYPE_ROCK_3_HDMI_IN"; cam_ident="radxa-zero3-hdmi-in" ;;
             91) cam_type="X_CAM_TYPE_ROCK_3_OV5647"; cam_ident="rpi-camera-v1.3" ;;
             92) cam_type="X_CAM_TYPE_ROCK_3_IMX219"; cam_ident="rpi-camera-v2" ;;
             93) cam_type="X_CAM_TYPE_ROCK_3_IMX708"; cam_ident="imx708" ;;
             94) cam_type="X_CAM_TYPE_ROCK_3_OHD_Jaguar"; cam_ident="ohd-jaguar" ;;
             # Enterprise
-            101) cam_type="X_CAM_TYPE_AGX_IMX577";;
+            101) cam_type="X_CAM_TYPE_NVIDIA_XAVIER_IMX577";;
+            110) cam_type="X_CAM_TYPE_OPENIPC_GENERIC';;
             *) cam_type="Unknown"; cam_link="unknown_link"; cma=false ;;
         esac
 
