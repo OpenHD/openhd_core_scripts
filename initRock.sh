@@ -56,8 +56,8 @@ if [[ -f "/config/openhd/zero3w.txt" ]]; then
         touch /run/openhd/hold.pid
         echo resizing partition
         parted /dev/mmcblk1 --script resizepart 4 100%
-        mkfs.vfat -F 32 /dev/mmcblk1p4
-        rm /config/openhd/resize.txt
+        sudo mkntfs -F /dev/mmcblk1p4
+        sudo rm /config/openhd/resize.txt
         reboot
         fi
     if [ -e /config/openhd/air.txt ]; then 
