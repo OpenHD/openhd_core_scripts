@@ -55,6 +55,8 @@ if [[ -f "/config/openhd/rock-rk3566.txt" ]]; then
         echo resizing partition
         parted /dev/mmcblk1 --script resizepart 4 100%
         mkfs.vfat -F 32 /dev/mmcblk1p4
+        rm /config/openhd/resize.txt
+        reboot
         fi
     if [ -e /config/openhd/air.txt ]; then 
         if [ -e /config/openhd/camera1.txt ] && [ ! -e /config/openhd/camera.txt ]; then
