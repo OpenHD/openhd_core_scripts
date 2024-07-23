@@ -56,18 +56,18 @@ if [[ -f "/config/openhd/rock-rk3566.txt" ]]; then
         parted /dev/mmcblk1 --script resizepart 4 100%
         mkfs.vfat -F 32 /dev/mmcblk1p4
         fi
-    if [ -e /boot/openhd/air.txt ]; then 
-        if [ -e /boot/openhd/camera1.txt ] && [ ! -e /boot/openhd/camera.txt ]; then
+    if [ -e /config/openhd/air.txt ]; then 
+        if [ -e /config/openhd/camera1.txt ] && [ ! -e /config/openhd/camera.txt ]; then
             #quite hacky now, but better then nothing
             sudo systemctl stop h264_decode
             sudo systemctl disable h264_decode
             sudo systemctl stop openhd
             sudo systemctl stop qopenhd
             sudo systemctl disable qopenhd
-            touch /boot/openhd/camera.txt
-            bash /usr/local/bin/ohd_camera_setup.sh > /boot/openhd/camera.txt
+            touch /config/openhd/camera.txt
+            bash /usr/local/bin/ohd_camera_setup.sh > /config/openhd/camera.txt
             sleep 2
-            bash /usr/local/bin/ohd_camera_setup.sh > /boot/openhd/camera.txt
+            bash /usr/local/bin/ohd_camera_setup.sh > /config/openhd/camera.txt
             reboot
         fi
     exit 0
