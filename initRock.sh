@@ -49,7 +49,7 @@ if [[ -f "/boot/openhd/rock-5b.txt" ]]; then
     fi
 fi
 
-if [[ -f "/config/openhd/rock-rk3566.txt" ]]; then
+if [[ -f "/config/openhd/zero3w.txt" ]]; then
     echo "Running on a rk3566 "
         if [[ -f "/config/openhd/resize.txt" ]]; then
         mkdir -p /run/openhd/
