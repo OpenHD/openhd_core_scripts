@@ -64,24 +64,10 @@ if [ -f "/boot/openhd/rock-5b.txt" ]; then
   rm /boot/openhd/rock-5b.txt
 fi
 
-if [ -f "/boot/openhd/rock-rk3566.txt" ] || [ -f "/boot/openhd/openhd/rock-rk3566.txt" ]; then
+if [ -f "/config/openhd/zero3w.txt" ]; then
   echo "detected rk3566 device"
-  if  [ -e /dev/mmcblk1p1 ]; then
-    if  [ -e /home/openhd/Videos ]; then
-    mkdir -p /home/openhd/Videos_emmc
-    mv /home/openhd/Videos /home/openhd/Videos_emmc
-    rm -Rf /home/openhd/Videos
-    fi
-    mkdir -p /home/openhd/Videos
-    sudo mount -t vfat /dev/mmcblk1p1 /home/openhd/Videos
-    mv /home/openhd/Videos_emmc/* /home/openhd/Videos
-  fi
-  echo "run initRock"
-  if  [ -e /config/write_logs.txt ]; then
-  sudo journalctl > /config/logs.txt
-  fi
   sudo bash /usr/local/bin/initRock.sh > /boot/debug.txt
-  if [ -f "/boot/openhd/clearEMMC.txt" ] || [ -f "/home/openhd/Videos/clearEMMC.txt" ] ; then
+  if [ -f "/config/openhd/clearEMMC.txt" ]; then
     bash /usr/local/bin/openhd_emmc_util clear
     whiptail --msgbox "EMMC cleared Please reboot your system now" 10 40
   fi
