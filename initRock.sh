@@ -52,6 +52,8 @@ fi
 if [[ -f "/config/openhd/rock-rk3566.txt" ]]; then
     echo "Running on a rk3566 "
         if [[ -f "/config/openhd/resize.txt" ]]; then
+        mkdir -p /run/openhd/
+        touch /run/openhd/hold.pid
         echo resizing partition
         parted /dev/mmcblk1 --script resizepart 4 100%
         mkfs.vfat -F 32 /dev/mmcblk1p4
