@@ -5,6 +5,19 @@ uname_output=$(uname -a)
 kernel_version=$(echo "$uname_output" | awk '{print $3}')
 kernel_type=$(echo "$kernel_version" | awk -F '-' '{print $2}')
 
+
+if [[ -f "/usr/local/share/openhd_platform/rpi/" ]]; then
+    echo "Running on a raspberry pi "
+        if [[ -f "/boot/openhd/resize.txt" ]]; then
+        mkdir -p /run/openhd/
+        touch /run/openhd/hold.pid
+        echo resizing partition
+        parted /dev/mmcblk0 --script resizepart 4 100%
+        sudo rm /boot/openhd/resize.txt
+        sudo mkfs.vfat -F 32 -n "Recordings" /dev/mmcblk1p4
+        reboot
+        fi
+
 if [[ "$kernel_type" == "v7l+" ]]; then
   # kms
   board_type="rpi_4_"
