@@ -12,7 +12,7 @@ if [[ -e "/usr/local/share/openhd_platform/rpi/" ]]; then
         mkdir -p /run/openhd/
         touch /run/openhd/hold.pid
         echo resizing partition
-        parted /dev/mmcblk0 --script resizepart 4 100%
+        parted /dev/mmcblk0 --script resizepart 3 100%
         sudo rm /boot/openhd/resize.txt
         sudo mkfs.vfat -F 32 -n "Recordings" /dev/mmcblk1p4
         reboot
