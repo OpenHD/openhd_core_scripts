@@ -64,7 +64,7 @@ if [ -f "/boot/openhd/rock-5b.txt" ]; then
   rm /boot/openhd/rock-5b.txt
 fi
 
-if [ -f "/config/openhd/zero3w.txt" ]; then
+if [ -f "/config/openhd/rock-rk3566.txt" ]; then
   echo "detected rk3566 device"
   sudo bash /usr/local/bin/initRock.sh > /boot/debug.txt
   if [ -f "/config/openhd/clearEMMC.txt" ]; then
