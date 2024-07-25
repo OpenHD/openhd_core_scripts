@@ -17,6 +17,7 @@ if [[ -e "/usr/local/share/openhd_platform/rpi/" ]]; then
         sudo mkfs.vfat -F 32 -n "Recordings" /dev/mmcblk1p4
         reboot
         fi
+fi
 
 if [[ "$kernel_type" == "v7l+" ]]; then
   # kms
