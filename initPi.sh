@@ -6,7 +6,7 @@ kernel_version=$(echo "$uname_output" | awk '{print $3}')
 kernel_type=$(echo "$kernel_version" | awk -F '-' '{print $2}')
 
 
-if [[ -f "/usr/local/share/openhd_platform/rpi/" ]]; then
+if [[ -e "/usr/local/share/openhd_platform/rpi/" ]]; then
     echo "Running on a raspberry pi "
         if [[ -f "/boot/openhd/resize.txt" ]]; then
         mkdir -p /run/openhd/
