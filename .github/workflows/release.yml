@@ -15,7 +15,7 @@ jobs:
       - name: Build
         run: |
           mkdir -p openhd_sys_utils/boot/openhd/scripts/
-          mv custom_unmanaged_camera.sh openhd_sys_utils/boot/openhd/scripts/
+          #mv custom_unmanaged_camera.sh openhd_sys_utils/boot/openhd/scripts/
           mkdir -p openhd_sys_utils/usr/local/share/openhd_misc
           cp misc/* openhd_sys_utils/usr/local/share/openhd_misc
           rm -Rf openhd_sys_utils/usr/local/share/openhd_misc/Wallpaper.png
