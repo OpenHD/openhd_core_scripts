@@ -73,7 +73,7 @@ otg_mode=1
 enable_uart=1
 start_x=1
 dtparam=i2c_arm=on
-dtparam=i2c_vc=on
+dtparam=i2c_vc=on,i2c_vc_baudrate=50000
 dtparam=i2c1=on
 
 #OpenHD does not "overclock" the rpi by default - doing so is possible, but not recommended.
