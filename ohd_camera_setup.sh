@@ -57,7 +57,7 @@ case $config_file_content in
             94) cam_type="X_CAM_TYPE_ROCK_3_OHD_Jaguar"; cam_ident="ohd-jaguar" ;;
             # Enterprise
             101) cam_type="X_CAM_TYPE_NVIDIA_XAVIER_IMX577";;
-            110) cam_type="X_CAM_TYPE_OPENIPC_GENERIC';;
+            110) cam_type="X_CAM_TYPE_OPENIPC_GENERIC";;
             *) cam_type="Unknown"; cam_link="unknown_link"; cma=false ;;
         esac
 
