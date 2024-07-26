@@ -15,7 +15,7 @@ if [[ -e "/usr/local/share/openhd_platform/rpi/" ]]; then
         parted /dev/mmcblk0 --script resizepart 3 100%
         sudo rm /boot/openhd/resize.txt
         sudo mkfs.vfat -F 32 -n "RECORDINGS" /dev/mmcblk0p3
-        sudo parted /dev/mmcblk0 --script set 3 lba on
+        echo -e "t\n3\n0c\nw" | fdisk /dev/mmcblk0
         reboot
         fi
 fi
