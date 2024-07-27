@@ -50,7 +50,7 @@ case $config_file_content in
             86) cam_type="X_CAM_TYPE_ROCK_5_IMX477"; cam_ident="arducam-pivariety" ;;
             87) cam_type="X_CAM_TYPE_ROCK_5_IMX519"; cam_ident="arducam-pivariety" ;;
             88) cam_type="X_CAM_TYPE_ROCK_5_OHD_Jaguar"; cam_ident="ohd-jaguar" ;;
-            90) cam_type="X_CAM_TYPE_ROCK_3_HDMI_IN"; cam_ident="radxa-zero3-hdmi-in" ;;
+            90) cam_type="X_CAM_TYPE_ROCK_3_HDMI_IN"; cam_ident="hdmi-in" ;;
             91) cam_type="X_CAM_TYPE_ROCK_3_OV5647"; cam_ident="rpi-camera-v1.3" ;;
             92) cam_type="X_CAM_TYPE_ROCK_3_IMX219"; cam_ident="rpi-camera-v2" ;;
             93) cam_type="X_CAM_TYPE_ROCK_3_IMX708"; cam_ident="imx708" ;;
