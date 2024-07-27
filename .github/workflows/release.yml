@@ -21,7 +21,6 @@ jobs:
           rm -Rf openhd_sys_utils/usr/local/share/openhd_misc/Wallpaper.png
           mkdir -p openhd_sys_utils/usr/local/bin
           mv *.sh openhd_sys_utils/usr/local/bin
-          mv x20_header.h264 openhd_sys_utils/usr/local/bin
           mkdir -p openhd_sys_utils/etc/systemd/system
           mv *.service openhd_sys_utils/etc/systemd/system/
           mkdir -p openhd_sys_utils/usr/local/bin/x20/
