@@ -2,14 +2,45 @@
 
 # Define all Camera types
 # Read camera configuration from file or argument
+# Determine Platform and board type
+uname_output=$(uname -a)
+kernel_version=$(echo "$uname_output" | awk '{print $3}')
+kernel_type=$(echo "$kernel_version" | awk -F '-' '{print $2}')
+
+if [[ "$kernel_type" == "v7l+" ]]; then
+    board_type="rpi_4_"
+    platform=rpi
+    supported_platform=true
+elif [[ "$kernel_type" == "v7+" ]]; then
+    board_type="rpi_3_"
+    platform=rpi
+    supported_platform=true
+elif echo "$kernel_version" | grep -q "rk356"; then
+    board_type="rk3566"
+    platform=rockchip
+    supported_platform=true
+elif echo "$kernel_version" | grep -q "rk358"; then
+    board_type="rk3588"
+    platform=rockchip
+    supported_platform=true
+elif echo "$kernel_version" | grep -q "x20"; then
+    board_type="x20"
+    platform=openhd
+    supported_platform=true
+else
+    supported_platform=false
+fi
 if [ $# -eq 0 ]; then
+    if [[ "$board_type" == "rk3566" ]]; then
+    config_file="/config/openhd/camera1.txt"
+    config_file_content=$(<$config_file)
+    else
     config_file="/boot/openhd/camera1.txt"
     config_file_content=$(<$config_file)
+    fi
 else
     config_file_content=$1
 fi
-
-
 case $config_file_content in
             # Raspberry
             0) cam_type="X_CAM_TYPE_DUMMY_SW"; cma=false ;;
@@ -60,36 +91,6 @@ case $config_file_content in
             110) cam_type="X_CAM_TYPE_OPENIPC_GENERIC";;
             *) cam_type="Unknown"; cam_link="unknown_link"; cma=false ;;
         esac
-
-
-# Determine Platform and board type
-uname_output=$(uname -a)
-kernel_version=$(echo "$uname_output" | awk '{print $3}')
-kernel_type=$(echo "$kernel_version" | awk -F '-' '{print $2}')
-
-if [[ "$kernel_type" == "v7l+" ]]; then
-    board_type="rpi_4_"
-    platform=rpi
-    supported_platform=true
-elif [[ "$kernel_type" == "v7+" ]]; then
-    board_type="rpi_3_"
-    platform=rpi
-    supported_platform=true
-elif echo "$kernel_version" | grep -q "rk356"; then
-    board_type="rk3566"
-    platform=rockchip
-    supported_platform=true
-elif echo "$kernel_version" | grep -q "rk358"; then
-    board_type="rk3588"
-    platform=rockchip
-    supported_platform=true
-elif echo "$kernel_version" | grep -q "x20"; then
-    board_type="x20"
-    platform=openhd
-    supported_platform=true
-else
-    supported_platform=false
-fi
 
 if [[ "$supported_platform" == true ]]; then
     echo $platform
