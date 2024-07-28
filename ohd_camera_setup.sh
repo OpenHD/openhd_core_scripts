@@ -21,7 +21,7 @@ determine_platform_and_board_type() {
                 board_type="rk3566"
                 platform="rockchip"
                 supported_platform=true
-            elif echo "$kernel_version" | grep -q "rk358"; then
+            elif echo "$kernel_version" | grep -q "radxa"; then
                 board_type="rk3588"
                 platform="rockchip"
                 supported_platform=true
