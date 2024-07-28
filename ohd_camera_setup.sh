@@ -169,40 +169,55 @@ handle_rockchip_platform() {
         else
             echo "This is an unknown platform"
         fi
-    elif [[ "$board_type" == "rk3588" ]]; then
-        echo "This Platform is Rockchip based and a RK3588 SOC"
-        if apt list --installed | grep -q "u-boot-rock-5a"; then
-            rk_config_spacer="        fdtoverlays  "
-            rk_config_platform="rock-5a-"
-            rk_config_line="${rk_config_spacer}${rk_config_platform}${cam_ident}.dtbo"
-            echo $rk_config_line
-        else if apt list --installed | grep -q "u-boot-rock-5b"; then
-            rk_config_spacer="        fdtoverlays  "
-            rk_config_platform="rock-5b-"
-            rk_config_line="${rk_config_spacer}${rk_config_platform}${cam_ident}.dtbo"
-        else 
+   elif [[ "$board_type" == "rk3588" ]]; then
+    echo "This Platform is Rockchip based and a RK3588 SOC"
+    echo "Checking for installed u-boot packages..."
+    if apt list --installed | grep -q "u-boot-rock-5a"; then
+        echo "u-boot-rock-5a is installed"
+        rk_config_spacer="        fdtoverlays  "
+        rk_config_platform="rock-5a-"
+        rk_config_line="${rk_config_spacer}${rk_config_platform}${cam_ident}.dtbo"
+    elif apt list --installed | grep -q "u-boot-rock-5b"; then
+        echo "u-boot-rock-5b is installed"
+        rk_config_spacer="        fdtoverlays  "
+        rk_config_platform="rock-5b-"
+        rk_config_line="${rk_config_spacer}${rk_config_platform}${cam_ident}.dtbo"
+    else 
         echo "Image not supported"
-        fi
-            # Search for lines containing "fdtoverlays" in the extlinux.conf file
-            lines_old=$(grep -n "fdtoverlays" /boot/extlinux/extlinux.conf | cut -d':' -f1)
-            for line in $lines_old; do
-                awk 'NR != '$line' { print }' /boot/extlinux/extlinux.conf > /boot/extlinux/extlinux.conf.tmp && mv /boot/extlinux/extlinux.conf.tmp /boot/extlinux/extlinux.conf
-            done
-            # Search for lines containing "append" in the extlinux.conf file
-            lines=$(grep -n "append" /boot/extlinux/extlinux.conf | cut -d':' -f1)
-            for line in $lines; do
-                awk -v line="$((line))" -v rk_config_line="$rk_config_line" 'NR == line {found=1; if (!($0 ~ rk_config_line)) print rk_config_line} {print} END {if (!found) print rk_config_line}' /boot/extlinux/extlinux.conf > tmpfile && mv tmpfile /boot/extlinux/extlinux.conf
-            done
-            sudo u-boot-update
-            # Copy the overlay to the correct position
-            rk_config_overlay_path="/boot/dtbo/"
-            rk_config_overlay_file=$rk_config_overlay_path$rk_config_platform$cam_ident".dtbo"
-            rk_config_overlay_disabled=$rk_config_overlay_file".disabled"
-            cp $rk_config_overlay_disabled $rk_config_overlay_file
-        fi
-        else
-            echo "This is an unknown platform"
+        exit 1
     fi
+
+    echo "Searching for lines containing 'fdtoverlays' in /boot/extlinux/extlinux.conf..."
+    lines_old=$(grep -n "fdtoverlays" /boot/extlinux/extlinux.conf | cut -d':' -f1)
+    echo "Lines with 'fdtoverlays': $lines_old"
+    for line in $lines_old; do
+        echo "Removing line $line from /boot/extlinux/extlinux.conf"
+        awk 'NR != '$line' { print }' /boot/extlinux/extlinux.conf > /boot/extlinux/extlinux.conf.tmp && mv /boot/extlinux/extlinux.conf.tmp /boot/extlinux/extlinux.conf
+    done
+
+    echo "Searching for lines containing 'append' in /boot/extlinux/extlinux.conf..."
+    lines=$(grep -n "append" /boot/extlinux/extlinux.conf | cut -d':' -f1)
+    echo "Lines with 'append': $lines"
+    for line in $lines; do
+        echo "Processing line $line in /boot/extlinux/extlinux.conf"
+        awk -v line="$((line))" -v rk_config_line="$rk_config_line" 'NR == line {found=1; if (!($0 ~ rk_config_line)) print rk_config_line} {print} END {if (!found) print rk_config_line}' /boot/extlinux/extlinux.conf > tmpfile && mv tmpfile /boot/extlinux/extlinux.conf
+    done
+
+    echo "Running u-boot-update..."
+    sudo u-boot-update
+
+    echo "Copying the overlay to the correct position..."
+    rk_config_overlay_path="/boot/dtbo/"
+    rk_config_overlay_file=$rk_config_overlay_path$rk_config_platform$cam_ident".dtbo"
+    rk_config_overlay_disabled=$rk_config_overlay_file".disabled"
+    echo "Source overlay file: $rk_config_overlay_disabled"
+    echo "Destination overlay file: $rk_config_overlay_file"
+    cp $rk_config_overlay_disabled $rk_config_overlay_file
+
+else
+    echo "This is an unknown platform"
+fi
+
 }
 
 determine_platform_and_board_type
