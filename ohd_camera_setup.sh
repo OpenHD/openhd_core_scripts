@@ -188,6 +188,7 @@ if [[ "$supported_platform" == true ]]; then
         handle_rpi_platform
     elif [[ "$platform" == "rockchip" ]]; then
         handle_rockchip_platform
+        handle_rockchip_platform //dirty fix for not working on the first try
     fi
 else
     echo "This platform is not supported"
