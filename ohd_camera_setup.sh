@@ -175,6 +175,7 @@ handle_rockchip_platform() {
             rk_config_spacer="        fdtoverlays  "
             rk_config_platform="rock-5a-"
             rk_config_line="${rk_config_spacer}${rk_config_platform}${cam_ident}.dtbo"
+            echo $rk_config_line
         else if apt list --installed | grep -q "u-boot-rock-5b"; then
             rk_config_spacer="        fdtoverlays  "
             rk_config_platform="rock-5b-"
