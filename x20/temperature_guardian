@@ -2,7 +2,7 @@
 
 # In case openhd thermal protection doesn't work or isn't enough
 MaxTempWarn=85000
-MaxTempShutdown=100000
+MaxTempShutdown=10000
 
 while true; do
     temp=`cat /sys/class/hwmon/hwmon0/temp1_input`
