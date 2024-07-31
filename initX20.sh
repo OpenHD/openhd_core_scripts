@@ -17,7 +17,7 @@ depmod -a
 modprobe HdZero
 if [ ! -f /usr/local/share/openhd_platform/x20/firstboot_done ]; then
     echo "started once" >> /external/log2.txt
-    rm /run/openhd/hold.pid
+    touch /usr/local/share/openhd_platform/x20/firstboot_done
     reboot
 else
     ls -a /usr/local/share/openhd_platform/x20/ >> /external/log2.txt
