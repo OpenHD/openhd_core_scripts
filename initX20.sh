@@ -16,6 +16,7 @@ depmod -a
 modprobe HdZero
 if [ ! -f /usr/local/share/openhd_platform/x20/firstboot_done ]; then
     touch /usr/local/share/openhd_platform/x20/firstboot_done
+    rm /run/openhd/hold.pid
     reboot
 fi
 

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -f /usr/local/share/openhd_platform/x20/firstboot_done ]; then
+    touch /run/openhd/hold.pid
+fi
+
 # Go red to say openhd is starting
 echo 0 >/sys/class/leds/openhd-x20dev\:red\:usr/brightness
 echo 1 >/sys/class/leds/openhd-x20dev\:green\:usr/brightness
