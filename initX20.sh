@@ -20,4 +20,7 @@ echo 0 >/sys/class/leds/openhd-x20dev\:red\:usr/brightness
 echo 0 >/sys/class/leds/openhd-x20dev\:green\:usr/brightness
 echo 1 >/sys/class/leds/openhd-x20dev\:blue\:usr/brightness
 
-dmesg > /external/log.txt
+if [ ! -f /usr/local/share/firstboot_done ]; then
+    touch /usr/local/share/firstboot_done
+    reboot
+fi
