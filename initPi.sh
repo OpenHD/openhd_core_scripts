@@ -11,11 +11,13 @@ if [[ -e "/boot/openhd/rpi.txt" ]]; then
         if [[ -f "/boot/openhd/resize.txt" ]]; then
         mkdir -p /run/openhd/
         touch /run/openhd/hold.pid
-        echo resizing partition
+        echo "resizing partition"
+        sudo mkfs.fat -F 32 /dev/mmcblk0p3
         parted /dev/mmcblk0 --script resizepart 3 100%
         sudo rm /boot/openhd/resize.txt
         sudo mkfs.vfat -F 32 -n "RECORDINGS" /dev/mmcblk0p3
         echo -e "t\n3\n0c\nw" | fdisk /dev/mmcblk0
+        sudo echo "/dev/mmcblk0p3  /Videos  auto  defaults  0  2" | sudo tee -a /etc/fstab
         reboot
         fi
 fi
