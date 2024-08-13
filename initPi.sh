@@ -18,6 +18,9 @@ if [[ -e "/boot/openhd/rpi.txt" ]]; then
         sudo mkfs.vfat -F 32 -n "RECORDINGS" /dev/mmcblk0p3
         echo -e "t\n3\n0c\nw" | fdisk /dev/mmcblk0
         sudo echo "/dev/mmcblk0p3  /Videos  auto  defaults  0  2" | sudo tee -a /etc/fstab
+        mkdir -p /tmp/test
+        mount /dev/mmcblk0p3 /tmp/test
+        touch /tmp/test/external_video_part.txt
         reboot
         fi
 fi
