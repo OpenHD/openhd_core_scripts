@@ -74,8 +74,6 @@ if [ -f "/config/openhd/rock-rk3566.txt" ]; then
 fi
 
 if [ -f "/boot/openhd/rpi.txt" ]; then
-  if [ -f "/boot/openhd/air.txt" ]; then
   sudo bash /usr/local/bin/initPi.sh
   rm /boot/openhd/rpi.txt
-  fi
 fi
