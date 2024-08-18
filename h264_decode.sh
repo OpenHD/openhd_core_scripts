@@ -21,7 +21,7 @@ function execute_FPVueVideoDecode2 {
 }
 
 # Detect Platform
-if [ -f "/boot/openhd/rpi.txt" ]; then
+if grep -q "Raspberry Pi" /proc/device-tree/model; then
 execute_fpvVideoDecode
 fi
 
