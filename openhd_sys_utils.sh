@@ -26,7 +26,7 @@ if [ -e "$debug_file" ]; then
 fi
 
 # initialise functions
-if [ -f "/boot/openhd/hardware_vtx_v20.txt" ]; then
+if [ -f "/external/openhd/hardware_vtx_v20.txt" ]; then
  sudo bash /usr/local/bin/initX20.sh
  #rm /boot/openhd/hardware_vtx_v20.txt
 fi
