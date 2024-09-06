@@ -1,13 +1,4 @@
 #!/bin/bash
 
 # In case openhd thermal protection doesn't work or isn't enough
-MaxTempShutdown=10000
-
-while true; do
-    temp=`cat /sys/class/hwmon/hwmon0/temp1_input`
-    if [ $temp \> $MaxTempShutdown ]; then
-        echo "Overtemperature detected of $temp celcius, shutting down"
-        echo "Overtemperature detected of $temp celcius, shutting down" >>/external/openhd/OvertempErrorLog.txt
-        shutdown -h 0
-    sleep 1
-done
+# Disabled
