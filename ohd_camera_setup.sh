@@ -90,8 +90,8 @@ set_camera_type() {
         90) cam_type="X_CAM_TYPE_ROCK_3_HDMI_IN"; cam_ident="hdmi-in" ;;
         91) cam_type="X_CAM_TYPE_ROCK_3_OV5647"; cam_ident="rpi-camera-v1.3" ;;
         92) cam_type="X_CAM_TYPE_ROCK_3_IMX219"; cam_ident="rpi-camera-v2" ;;
-        93) cam_type="X_CAM_TYPE_ROCK_3_IMX462"; cam_ident="imx462" ;;
-        94) cam_type="X_CAM_TYPE_ROCK_3_IMX519"; cam_ident="imx519" ;;
+        93) cam_type="X_CAM_TYPE_ROCK_3_IMX462"; cam_ident="arducam-pivariety-imx462" ;;
+        94) cam_type="X_CAM_TYPE_ROCK_3_IMX519"; cam_ident="arducam-pivariety-imx519" ;;
         95) cam_type="X_CAM_TYPE_ROCK_3_IMX708"; cam_ident="imx708" ;;
         96) cam_type="X_CAM_TYPE_ROCK_3_OHD_Jaguar"; cam_ident="ohd-jaguar" ;;
         101) cam_type="X_CAM_TYPE_NVIDIA_XAVIER_IMX577" ;;
