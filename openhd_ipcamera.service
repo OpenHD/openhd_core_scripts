@@ -1,0 +1,10 @@
+[Unit]
+Description=Enable IP-Camera support
+After=openhd.service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /boot/openhd/custom_unmanaged_camera.sh
+
+[Install]
+WantedBy=multi-user.target
