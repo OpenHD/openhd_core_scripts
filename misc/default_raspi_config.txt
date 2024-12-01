@@ -87,6 +87,8 @@ core_freq_min=500
 h264_freq_min=500
 isp_freq_min=500
 v3d_freq_min=500
+dtoverlay=uart2,115200
+dtoverlay=uart3,115200
 
 gpu_mem=128
 
